@@ -9,6 +9,13 @@
 
   <name>restexpress-scaffold-minimal</name>
 
+  <parent>
+    <groupId>com.strategicgains.archetype</groupId>
+    <artifactId>restexpress-archetype</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <relativePath>..</relativePath>
+  </parent>
+
   <build>
     <extensions>
       <extension>
