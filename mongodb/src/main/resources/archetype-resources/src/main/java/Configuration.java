@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.Properties;
 
 import com.mongodb.Mongo;
+import com.mongodb.MongoClient;
+import com.mongodb.MongoClientOptions;
 import com.mongodb.ServerAddress;
 import com.strategicgains.repoexpress.mongodb.MongodbEntityRepository;
 import com.strategicgains.restexpress.Format;
@@ -27,6 +29,7 @@ extends Environment
 	private static final String MONGODB_DATABASE_PROPERTY = "mongodb.database";
 	private static final String MONGODB_USERNAME_PROPERTY = "mongodb.user";
 	private static final String MONGODB_PASSWORD_PROPERTY = "mongodb.password";
+	private static final String MONGODB_CONNECTIONS_PER_HOST_PROPERTY = "mongodb.connectionsPerHost";
 	private static final String BASE_URL_PROPERTY = "base.url";
 
 	private int port;
@@ -50,6 +53,7 @@ extends Environment
 
 		String dbUser = p.getProperty(MONGODB_USERNAME_PROPERTY);
 		String dbPassword = p.getProperty(MONGODB_PASSWORD_PROPERTY);
+		int connectionsPerHost = Integer.parseInt(p.getProperty(MONGODB_CONNECTIONS_PER_HOST_PROPERTY, "100"));
 		List<ServerAddress> bootstraps = null;
 
 		try
@@ -62,7 +66,11 @@ extends Environment
 			throw new ConfigurationException(e);
 		}
 
-		Mongo mongo = new Mongo(bootstraps);
+		MongoClientOptions options = new MongoClientOptions.Builder()
+			.connectionsPerHost(connectionsPerHost)
+			.socketKeepAlive(true)
+			.build();
+		MongoClient mongo = new MongoClient(bootstraps, options);
 		initialize(mongo, dbName, dbUser, dbPassword);
 	}
 
