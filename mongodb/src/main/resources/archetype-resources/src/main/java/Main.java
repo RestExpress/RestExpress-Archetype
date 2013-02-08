@@ -17,6 +17,7 @@ import com.strategicgains.restexpress.exception.NotFoundException;
 import com.strategicgains.restexpress.pipeline.SimpleConsoleLogMessageObserver;
 import com.strategicgains.restexpress.plugin.cache.CacheControlPlugin;
 import com.strategicgains.restexpress.plugin.route.RoutesMetadataPlugin;
+import ${package}.config.Configuration;
 import ${package}.postprocessor.LastModifiedHeaderPostprocessor;
 import ${package}.serialization.ResponseProcessors;
 import com.strategicgains.restexpress.util.Environment;
@@ -33,6 +34,7 @@ public class Main
 		    .setName(SERVICE_NAME)
 		    .setBaseUrl(config.getBaseUrl())
 		    .setDefaultFormat(config.getDefaultFormat())
+		    .setExecutorThreadCount(config.getExecutorThreadPoolSize())
 		    .putResponseProcessor(Format.JSON, ResponseProcessors.json())
 		    .putResponseProcessor(Format.XML, ResponseProcessors.xml())
 		    .putResponseProcessor(Format.WRAPPED_JSON, ResponseProcessors.wrappedJson())

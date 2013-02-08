@@ -9,3 +9,8 @@ To run the project:
 To create a project deployable assembly (zip file):
 	mvn clean package
 	mvn assembly:single
+
+To run the project via the assembly (zip file):
+	unzip <assembly file created in above step>
+	cd <artifact directory>
+	java -jar <artifact jar file> [environment name]
