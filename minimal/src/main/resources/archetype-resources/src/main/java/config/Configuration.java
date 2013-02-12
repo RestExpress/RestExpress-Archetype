@@ -24,6 +24,7 @@ extends Environment
 	private String defaultFormat;
 	private String baseUrl;
 	private int executorThreadPoolSize;
+	private MetricsConfig metricsConfig;
 
 	private SampleController sampleController;
 
@@ -34,6 +35,7 @@ extends Environment
 		this.defaultFormat = p.getProperty(DEFAULT_FORMAT_PROPERTY, Format.JSON);
 		this.baseUrl = p.getProperty(BASE_URL_PROPERTY, "http://localhost:" + String.valueOf(port));
 		this.executorThreadPoolSize = Integer.parseInt(p.getProperty(EXECUTOR_THREAD_POOL_SIZE, DEFAULT_EXECUTOR_THREAD_POOL_SIZE));
+		this.metricsConfig = new MetricsConfig(p);
 		initialize();
 	}
 
@@ -60,6 +62,11 @@ extends Environment
 	public int getExecutorThreadPoolSize()
 	{
 		return executorThreadPoolSize;
+	}
+	
+	public MetricsConfig getMetricsConfig()
+	{
+		return metricsConfig;
 	}
 
 	public SampleController getSampleController()

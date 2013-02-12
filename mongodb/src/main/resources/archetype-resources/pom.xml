@@ -31,11 +31,6 @@
 		</dependency>
 		<dependency>
 			<groupId>com.strategicgains</groupId>
-			<artifactId>PluginExpress</artifactId>
-			<version>0.1.1</version>
-		</dependency>
-		<dependency>
-			<groupId>com.strategicgains</groupId>
 			<artifactId>Syntaxe</artifactId>
 			<version>0.4.4</version>
 		</dependency>
@@ -48,6 +43,31 @@
 			<groupId>com.strategicgains.domain-eventing</groupId>
 			<artifactId>domain-eventing-core</artifactId>
 			<version>0.4.2</version>
+		</dependency>
+		<dependency>
+			<groupId>com.strategicgains.plugin-express</groupId>
+			<artifactId>CacheControlPlugin</artifactId>
+			<version>0.1.2-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.strategicgains.plugin-express</groupId>
+			<artifactId>MetricsPlugin</artifactId>
+			<version>0.1.2-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.strategicgains.plugin-express</groupId>
+			<artifactId>RoutesMetadataPlugin</artifactId>
+			<version>0.1.2-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.yammer.metrics</groupId>
+			<artifactId>metrics-graphite</artifactId>
+			<version>2.2.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-jcl</artifactId>
+			<version>1.7.2</version>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
