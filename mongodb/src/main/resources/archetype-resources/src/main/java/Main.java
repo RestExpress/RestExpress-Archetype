@@ -71,7 +71,8 @@ public class Main
 
 	    if (mc.isEnabled())
 		{
-			new MetricsPlugin()									// Instrument all routes.
+			new MetricsPlugin()
+				.virtualMachineId(mc.getMachineName())
 				.register(server);
 
 			if (mc.isGraphiteEnabled())
