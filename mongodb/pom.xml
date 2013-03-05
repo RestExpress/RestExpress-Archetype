@@ -4,7 +4,7 @@
 
   <groupId>com.strategicgains.archetype</groupId>
   <artifactId>restexpress-scaffold-mongodb</artifactId>
-  <version>1.2</version>
+  <version>1.3-SNAPSHOT</version>
   <packaging>maven-archetype</packaging>
 
   <name>restexpress-scaffold-mongodb</name>
@@ -12,7 +12,7 @@
   <parent>
     <groupId>com.strategicgains.archetype</groupId>
     <artifactId>restexpress-archetype</artifactId>
-    <version>1.2</version>
+    <version>1.3-SNAPSHOT</version>
     <relativePath>..</relativePath>
   </parent>
 
