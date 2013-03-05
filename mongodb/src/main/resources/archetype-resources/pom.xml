@@ -22,7 +22,7 @@
 		<dependency>
 			<groupId>com.strategicgains</groupId>
 			<artifactId>RestExpress</artifactId>
-			<version>0.9.0-SNAPSHOT</version>
+			<version>0.9.1</version>
 		</dependency>
 		<dependency>
 			<groupId>com.strategicgains</groupId>
@@ -37,27 +37,27 @@
 		<dependency>
 			<groupId>com.strategicgains.repoexpress</groupId>
 			<artifactId>repoexpress-mongodb</artifactId>
-			<version>0.3.1</version>
+			<version>0.3.2</version>
 		</dependency>
 		<dependency>
 			<groupId>com.strategicgains.domain-eventing</groupId>
 			<artifactId>domain-eventing-core</artifactId>
-			<version>0.4.2</version>
+			<version>0.4.3</version>
 		</dependency>
 		<dependency>
 			<groupId>com.strategicgains.plugin-express</groupId>
 			<artifactId>CacheControlPlugin</artifactId>
-			<version>0.1.2-SNAPSHOT</version>
+			<version>0.1.2</version>
 		</dependency>
 		<dependency>
 			<groupId>com.strategicgains.plugin-express</groupId>
 			<artifactId>MetricsPlugin</artifactId>
-			<version>0.1.2-SNAPSHOT</version>
+			<version>0.1.2</version>
 		</dependency>
 		<dependency>
 			<groupId>com.strategicgains.plugin-express</groupId>
 			<artifactId>RoutesMetadataPlugin</artifactId>
-			<version>0.1.2-SNAPSHOT</version>
+			<version>0.1.2</version>
 		</dependency>
 		<dependency>
 			<groupId>com.yammer.metrics</groupId>
