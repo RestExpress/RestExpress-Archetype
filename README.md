@@ -9,12 +9,12 @@ Usage
 To create a new RestExpress project using one of these archetypes, use the Maven archetype plugin with the 'generate' goal.  To create a mongodb-based project interactively:
 
 ```
-mvn archetype:generate -DarchetypeGroupId=com.strategicgains.archetype -DarchetypeArtifactId=restexpress-scaffold-mongodb -DarchetypeVersion=1.4
+mvn archetype:generate -DarchetypeGroupId=com.strategicgains.archetype -DarchetypeArtifactId=restexpress-scaffold-mongodb -DarchetypeVersion=1.5
 ```
 
 For a minimal skeleton interactively, use the following:
 ```
-mvn archetype:generate -DarchetypeGroupId=com.strategicgains.archetype -DarchetypeArtifactId=restexpress-scaffold-minimal -DarchetypeVersion=1.4
+mvn archetype:generate -DarchetypeGroupId=com.strategicgains.archetype -DarchetypeArtifactId=restexpress-scaffold-minimal -DarchetypeVersion=1.5
 ```
 
 Scripts

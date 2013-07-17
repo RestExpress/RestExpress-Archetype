@@ -5,23 +5,17 @@ package ${package}.config;
 
 import java.util.Properties;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.strategicgains.restexpress.exception.ConfigurationException;
 
 public class MetricsConfig
 {
-	private static final Logger LOG = LoggerFactory.getLogger(MetricsConfig.class);
 	private static final String METRICS_IS_ENABLED_PROPERTY = "metrics.isEnabled";
-	private static final String METRICS_MACHINE_NAME_PROPERTY = "metrics.machineName";
 	private static final String GRAPHITE_IS_ENABLED_PROPERTY = "metrics.graphite.isEnabled";
 	private static final String GRAPHITE_HOST_PROPERTY = "metrics.graphite.host";
 	private static final String GRAPHITE_PORT_PROPERTY = "metrics.graphite.port";
 	private static final String GRAPHITE_PUBLISHING_SECONDS_PROPERTY = "metrics.graphite.publishSeconds";
 
 	private boolean isEnabled;
-	private String machineName;
 	private boolean isGraphiteEnabled;
 	private String graphiteHost;
 	private Integer graphitePort;
@@ -34,13 +28,6 @@ public class MetricsConfig
 
 		isGraphiteEnabled = Boolean.parseBoolean(p.getProperty(GRAPHITE_IS_ENABLED_PROPERTY, "true"));
 		if (!isGraphiteEnabled) return;
-
-		machineName = p.getProperty(METRICS_MACHINE_NAME_PROPERTY);
-		
-		if (machineName == null)
-		{
-			LOG.warn("*** Machine Name (" + METRICS_MACHINE_NAME_PROPERTY + ") is not set. ***");
-		}
 
 		graphiteHost = p.getProperty(GRAPHITE_HOST_PROPERTY);
 
@@ -72,11 +59,6 @@ public class MetricsConfig
 	public boolean isEnabled()
 	{
 		return isEnabled;
-	}
-	
-	public String getMachineName()
-	{
-		return machineName;
 	}
 
 	public boolean isGraphiteEnabled()

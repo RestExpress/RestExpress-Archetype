@@ -22,22 +22,22 @@
 		<dependency>
 			<groupId>com.strategicgains</groupId>
 			<artifactId>RestExpress</artifactId>
-			<version>0.9.3</version>
+			<version>0.9.4</version>
 		</dependency>
 		<dependency>
 			<groupId>com.strategicgains</groupId>
 			<artifactId>HyperExpress</artifactId>
-			<version>1.0.1</version>
+			<version>1.0.2</version>
 		</dependency>
 		<dependency>
 			<groupId>com.strategicgains</groupId>
 			<artifactId>Syntaxe</artifactId>
-			<version>0.4.5</version>
+			<version>0.4.6</version>
 		</dependency>
 		<dependency>
 			<groupId>com.strategicgains.repoexpress</groupId>
 			<artifactId>repoexpress-mongodb</artifactId>
-			<version>0.3.2</version>
+			<version>0.3.3</version>
 		</dependency>
 		<dependency>
 			<groupId>com.strategicgains.domain-eventing</groupId>
@@ -47,22 +47,22 @@
 		<dependency>
 			<groupId>com.strategicgains.plugin-express</groupId>
 			<artifactId>CacheControlPlugin</artifactId>
-			<version>0.1.2</version>
+			<version>0.1.4</version>
 		</dependency>
 		<dependency>
 			<groupId>com.strategicgains.plugin-express</groupId>
 			<artifactId>MetricsPlugin</artifactId>
-			<version>0.1.2</version>
+			<version>0.1.4</version>
 		</dependency>
 		<dependency>
 			<groupId>com.strategicgains.plugin-express</groupId>
 			<artifactId>RoutesMetadataPlugin</artifactId>
-			<version>0.1.2</version>
+			<version>0.1.4</version>
 		</dependency>
 		<dependency>
-			<groupId>com.yammer.metrics</groupId>
+			<groupId>com.codahale.metrics</groupId>
 			<artifactId>metrics-graphite</artifactId>
-			<version>2.2.0</version>
+			<version>3.0.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>

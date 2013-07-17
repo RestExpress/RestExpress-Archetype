@@ -5,11 +5,16 @@ package ${package};
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.InetSocketAddress;
 import java.util.concurrent.TimeUnit;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.codahale.metrics.MetricFilter;
+import com.codahale.metrics.MetricRegistry;
+import com.codahale.metrics.graphite.Graphite;
+import com.codahale.metrics.graphite.GraphiteReporter;
 import com.strategicgains.restexpress.Format;
 import com.strategicgains.restexpress.Parameters;
 import com.strategicgains.restexpress.RestExpress;
@@ -23,7 +28,6 @@ import ${package}.config.MetricsConfig;
 import ${package}.serialization.ResponseProcessors;
 import com.strategicgains.restexpress.util.Environment;
 import com.strategicgains.syntaxe.ValidationException;
-import com.yammer.metrics.reporting.GraphiteReporter;
 
 public class Main
 {
@@ -65,14 +69,20 @@ public class Main
 
 	    if (mc.isEnabled())
 		{
-			new MetricsPlugin()
-				.virtualMachineId(mc.getMachineName())
+	    	MetricRegistry registry = new MetricRegistry();
+			new MetricsPlugin(registry)
 				.register(server);
 
 			if (mc.isGraphiteEnabled())
 			{
-				GraphiteReporter.enable(mc.getPublishSeconds(), TimeUnit.SECONDS,
-					mc.getGraphiteHost(), mc.getGraphitePort());
+				final Graphite graphite = new Graphite(new InetSocketAddress(mc.getGraphiteHost(), mc.getGraphitePort()));
+				final GraphiteReporter reporter = GraphiteReporter.forRegistry(registry)
+					.prefixedWith("web1.example.com")
+					.convertRatesTo(TimeUnit.SECONDS)
+					.convertDurationsTo(TimeUnit.MILLISECONDS)
+					.filter(MetricFilter.ALL)
+					.build(graphite);
+				reporter.start(mc.getPublishSeconds(), TimeUnit.SECONDS);
 			}
 			else
 			{
