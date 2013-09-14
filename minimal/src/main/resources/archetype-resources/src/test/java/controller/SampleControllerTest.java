@@ -25,8 +25,6 @@ public class SampleControllerTest {
      */
     private static RestExpress server;
     private HttpClient httpClient;
-
-
     private static final String BASE_URL = "http://localhost:8081";
 
 
