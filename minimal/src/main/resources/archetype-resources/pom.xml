@@ -63,8 +63,14 @@
 			<version>4.11</version>
 			<type>jar</type>
 			<scope>test</scope>
-			<optional>true</optional>
-		</dependency>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.2.5</version>
+            <type>jar</type>
+            <scope>test</scope>
+        </dependency>
 	</dependencies>
 
 	<build>
