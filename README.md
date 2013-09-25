@@ -4,6 +4,8 @@ RestExpress Archetypes
 * minimal - a minimal RestExpress server
 * mongodb - a mongodb-backed service suite.
 
+__NOTE:__ This project is generated from [RestExpress-Scaffold](https://github.com/RestExpress/RestExpress-Scaffold).  Please fork and edit the sources there as pull requests to this project are not accepted.
+
 Usage
 =====
 To create a new RestExpress project using one of these archetypes, use the Maven archetype plugin with the 'generate' goal.  To create a mongodb-based project interactively:
