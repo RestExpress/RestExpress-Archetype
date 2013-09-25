@@ -63,6 +63,7 @@
 			<version>4.11</version>
 			<type>jar</type>
 			<scope>test</scope>
+			<optional>true</optional>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>

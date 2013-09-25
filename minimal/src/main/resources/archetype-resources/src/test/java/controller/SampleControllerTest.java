@@ -3,20 +3,22 @@
 #set( $symbol_escape = '\' )
 package ${package}.controller;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
-import ${package}.Main;
+import java.io.IOException;
 
-import com.strategicgains.restexpress.RestExpress;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
-import org.apache.http.entity.ContentType;
-import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.junit.*;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
 
-import java.io.IOException;
+import com.strategicgains.restexpress.RestExpress;
+import ${package}.Main;
 
 public class SampleControllerTest {
 

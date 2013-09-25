@@ -34,6 +34,11 @@ public class Main
 	private static final String SERVICE_NAME = "TODO: Enter Service Name";
 	private static final Logger LOG = LoggerFactory.getLogger(SERVICE_NAME);
 
+	public static void main(String[] args) throws Exception
+	{
+		RestExpress server = initializeServer(args);
+		server.awaitShutdown();
+	}
 
 	public static RestExpress initializeServer(String[] args) throws IOException
 	{
@@ -64,12 +69,6 @@ public class Main
 		return server;
     }
 
-	public static void main(String[] args) throws Exception
-	{
-		RestExpress server = initializeServer(args);
-		server.awaitShutdown();
-	}
-
 	private static void configureMetrics(Configuration config, RestExpress server)
     {
 		MetricsConfig mc = config.getMetricsConfig();
@@ -84,7 +83,7 @@ public class Main
 			{
 				final Graphite graphite = new Graphite(new InetSocketAddress(mc.getGraphiteHost(), mc.getGraphitePort()));
 				final GraphiteReporter reporter = GraphiteReporter.forRegistry(registry)
-					.prefixedWith("web1.example.com")
+					.prefixedWith(mc.getPrefix())
 					.convertRatesTo(TimeUnit.SECONDS)
 					.convertDurationsTo(TimeUnit.MILLISECONDS)
 					.filter(MetricFilter.ALL)

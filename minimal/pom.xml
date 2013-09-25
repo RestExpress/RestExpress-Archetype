@@ -7,7 +7,7 @@
   <version>1.6-SNAPSHOT</version>
   <packaging>maven-archetype</packaging>
 
-  <name>restexpress-scaffold-minimal</name>
+  <name>RestExpress-Scaffold-minimal</name>
 
   <parent>
     <groupId>com.strategicgains.archetype</groupId>
