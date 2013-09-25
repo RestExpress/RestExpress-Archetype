@@ -54,7 +54,7 @@ public class SampleController
 
 	public Sample read(Request request, Response response)
 	{
-		String id = request.getUrlDecodedHeader(Constants.Url.SAMPLE_ID, "No Sample ID supplied");
+		String id = request.getHeader(Constants.Url.SAMPLE_ID, "No Sample ID supplied");
 		Sample sample = samples.read(id);
 		
 		// Add 'self' link
@@ -91,7 +91,7 @@ public class SampleController
 
 	public void update(Request request, Response response)
 	{
-		String id = request.getUrlDecodedHeader(Constants.Url.SAMPLE_ID);
+		String id = request.getHeader(Constants.Url.SAMPLE_ID);
 		Sample sample = request.getBodyAs(Sample.class, "Sample details not provided");
 		
 		if (!id.equals(sample.getId()))
@@ -106,7 +106,7 @@ public class SampleController
 
 	public void delete(Request request, Response response)
 	{
-		String id = request.getUrlDecodedHeader(Constants.Url.SAMPLE_ID, "No Sample ID supplied");
+		String id = request.getHeader(Constants.Url.SAMPLE_ID, "No Sample ID supplied");
 		samples.delete(id);
 		response.setResponseNoContent();
 	}

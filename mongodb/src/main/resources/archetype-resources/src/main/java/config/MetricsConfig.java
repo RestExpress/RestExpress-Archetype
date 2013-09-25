@@ -10,6 +10,7 @@ import com.strategicgains.restexpress.exception.ConfigurationException;
 public class MetricsConfig
 {
 	private static final String METRICS_IS_ENABLED_PROPERTY = "metrics.isEnabled";
+	private static final String METRICS_PREFIX_PROPERTY = "metrics.prefix";
 	private static final String GRAPHITE_IS_ENABLED_PROPERTY = "metrics.graphite.isEnabled";
 	private static final String GRAPHITE_HOST_PROPERTY = "metrics.graphite.host";
 	private static final String GRAPHITE_PORT_PROPERTY = "metrics.graphite.port";
@@ -20,6 +21,7 @@ public class MetricsConfig
 	private String graphiteHost;
 	private Integer graphitePort;
 	private Integer publishSeconds;
+	private String prefix;
 
 	public MetricsConfig(Properties p)
 	{
@@ -28,6 +30,13 @@ public class MetricsConfig
 
 		isGraphiteEnabled = Boolean.parseBoolean(p.getProperty(GRAPHITE_IS_ENABLED_PROPERTY, "true"));
 		if (!isGraphiteEnabled) return;
+		
+		prefix = p.getProperty(METRICS_PREFIX_PROPERTY);
+		
+		if (prefix == null)
+		{
+			throw new ConfigurationException("Please define a metrics prefix for property: " + METRICS_PREFIX_PROPERTY);
+		}
 
 		graphiteHost = p.getProperty(GRAPHITE_HOST_PROPERTY);
 
@@ -79,5 +88,10 @@ public class MetricsConfig
 	public Integer getPublishSeconds()
 	{
 		return publishSeconds;
+	}
+	
+	public String getPrefix()
+	{
+		return prefix;
 	}
 }
