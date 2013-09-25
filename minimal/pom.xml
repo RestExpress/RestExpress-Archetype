@@ -4,7 +4,7 @@
 
   <groupId>com.strategicgains.archetype</groupId>
   <artifactId>restexpress-scaffold-minimal</artifactId>
-  <version>1.6-SNAPSHOT</version>
+  <version>1.6</version>
   <packaging>maven-archetype</packaging>
 
   <name>RestExpress-Scaffold-minimal</name>
@@ -12,7 +12,7 @@
   <parent>
     <groupId>com.strategicgains.archetype</groupId>
     <artifactId>restexpress-archetype</artifactId>
-    <version>1.6-SNAPSHOT</version>
+    <version>1.6</version>
     <relativePath>..</relativePath>
   </parent>
 
