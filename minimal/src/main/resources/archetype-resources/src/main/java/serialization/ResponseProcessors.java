@@ -3,8 +3,7 @@
 #set( $symbol_escape = '\' )
 package ${package}.serialization;
 
-import com.strategicgains.restexpress.response.DefaultResponseWrapper;
-import com.strategicgains.restexpress.response.RawResponseWrapper;
+import com.strategicgains.restexpress.response.ErrorResponseWrapper;
 import com.strategicgains.restexpress.response.ResponseProcessor;
 import com.strategicgains.restexpress.response.ResponseWrapper;
 import com.strategicgains.restexpress.serialization.SerializationProcessor;
@@ -18,29 +17,18 @@ public class ResponseProcessors
 
 	private static final SerializationProcessor JSON_SERIALIZER = new JsonSerializationProcessor();
 	private static final SerializationProcessor XML_SERIALIZER = new XmlSerializationProcessor();
-	private static final ResponseWrapper RAW_WRAPPER = new RawResponseWrapper();
-	private static final ResponseWrapper WRAPPING_WRAPPER = new DefaultResponseWrapper();
+	private static final ResponseWrapper RESPONSE_WRAPPER = new ErrorResponseWrapper();
 
 
 	// SECTION: FACTORY
 
 	public static ResponseProcessor json()
 	{
-		return new ResponseProcessor(JSON_SERIALIZER, RAW_WRAPPER);
-	}
-
-	public static ResponseProcessor wrappedJson()
-	{
-		return new ResponseProcessor(JSON_SERIALIZER, WRAPPING_WRAPPER);
+		return new ResponseProcessor(JSON_SERIALIZER, RESPONSE_WRAPPER);
 	}
 
 	public static ResponseProcessor xml()
 	{
-		return new ResponseProcessor(XML_SERIALIZER, RAW_WRAPPER);
-	}
-
-	public static ResponseProcessor wrappedXml()
-	{
-		return new ResponseProcessor(XML_SERIALIZER, WRAPPING_WRAPPER);
+		return new ResponseProcessor(XML_SERIALIZER, RESPONSE_WRAPPER);
 	}
 }

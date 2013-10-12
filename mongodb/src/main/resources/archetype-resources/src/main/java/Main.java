@@ -56,8 +56,6 @@ public class Main
 				.setExecutorThreadCount(config.getExecutorThreadPoolSize())
 				.putResponseProcessor(Format.JSON, ResponseProcessors.json())
 				.putResponseProcessor(Format.XML, ResponseProcessors.xml())
-				.putResponseProcessor(Format.WRAPPED_JSON, ResponseProcessors.wrappedJson())
-				.putResponseProcessor(Format.WRAPPED_XML, ResponseProcessors.wrappedXml())
 				.addMessageObserver(new SimpleConsoleLogMessageObserver());
 
 		Routes.define(config, server);
