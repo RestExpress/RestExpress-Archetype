@@ -5,7 +5,7 @@ package ${package}.config;
 
 import java.util.Properties;
 
-import com.strategicgains.restexpress.exception.ConfigurationException;
+import org.restexpress.common.exception.ConfigurationException;
 
 public class MetricsConfig
 {
@@ -30,37 +30,46 @@ public class MetricsConfig
 
 		isGraphiteEnabled = Boolean.parseBoolean(p.getProperty(GRAPHITE_IS_ENABLED_PROPERTY, "true"));
 		if (!isGraphiteEnabled) return;
-		
+
 		prefix = p.getProperty(METRICS_PREFIX_PROPERTY);
-		
+
 		if (prefix == null)
 		{
-			throw new ConfigurationException("Please define a metrics prefix for property: " + METRICS_PREFIX_PROPERTY);
+			throw new ConfigurationException(
+			    "Please define a metrics prefix for property: "
+			        + METRICS_PREFIX_PROPERTY);
 		}
 
 		graphiteHost = p.getProperty(GRAPHITE_HOST_PROPERTY);
 
 		if (graphiteHost == null)
 		{
-			throw new ConfigurationException("Please define a graphite host for property: " + GRAPHITE_HOST_PROPERTY);
+			throw new ConfigurationException(
+			    "Please define a graphite host for property: "
+			        + GRAPHITE_HOST_PROPERTY);
 		}
 
 		try
 		{
-			graphitePort = Integer.parseInt(p.getProperty(GRAPHITE_PORT_PROPERTY));
+			graphitePort = Integer.parseInt(p
+			    .getProperty(GRAPHITE_PORT_PROPERTY));
 		}
 		catch (NumberFormatException e)
 		{
-			throw new ConfigurationException("Please define a graphite port for property: " + GRAPHITE_PORT_PROPERTY, e);
+			throw new ConfigurationException(
+			    "Please define a graphite port for property: "
+			        + GRAPHITE_PORT_PROPERTY, e);
 		}
 
 		try
 		{
-			publishSeconds = Integer.parseInt(p.getProperty(GRAPHITE_PUBLISHING_SECONDS_PROPERTY));
+			publishSeconds = Integer.parseInt(p
+			    .getProperty(GRAPHITE_PUBLISHING_SECONDS_PROPERTY));
 		}
 		catch (NumberFormatException e)
 		{
-			throw new ConfigurationException("Please define how frequently (in seconds) to publish to graphite in property: "
+			throw new ConfigurationException(
+			    "Please define how frequently (in seconds) to publish to graphite in property: "
 			        + GRAPHITE_PUBLISHING_SECONDS_PROPERTY, e);
 		}
 	}
@@ -89,7 +98,7 @@ public class MetricsConfig
 	{
 		return publishSeconds;
 	}
-	
+
 	public String getPrefix()
 	{
 		return prefix;

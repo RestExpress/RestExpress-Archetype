@@ -5,7 +5,7 @@ package ${package}.config;
 
 import java.util.Properties;
 
-import com.strategicgains.restexpress.exception.ConfigurationException;
+import org.restexpress.common.exception.ConfigurationException;
 
 public class MetricsConfig
 {

@@ -3,18 +3,16 @@
 #set( $symbol_escape = '\' )
 package ${package}.serialization;
 
+import org.restexpress.serialization.json.JacksonJsonProcessor;
+
 import com.fasterxml.jackson.databind.module.SimpleModule;
-import com.strategicgains.restexpress.serialization.json.DefaultJsonProcessor;
 
 public class JsonSerializationProcessor
-extends DefaultJsonProcessor
+extends JacksonJsonProcessor
 {
 	@Override
     protected void initializeModule(SimpleModule module)
     {
 	    super.initializeModule(module);
-	    
-	    //TODO: add your own [de]serializers here.
-	    //module.addDeserializer(type, deser);
     }
 }

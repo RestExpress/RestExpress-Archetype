@@ -16,8 +16,8 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.restexpress.RestExpress;
 
-import com.strategicgains.restexpress.RestExpress;
 import ${package}.Main;
 
 public class SampleControllerTest {

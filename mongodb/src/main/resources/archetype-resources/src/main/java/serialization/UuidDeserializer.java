@@ -4,21 +4,21 @@
 package ${package}.serialization;
 
 import java.io.IOException;
-
-import org.bson.types.ObjectId;
+import java.util.UUID;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
+import com.strategicgains.repoexpress.util.UuidConverter;
 
-public class ObjectIdDeserializer
-extends JsonDeserializer<ObjectId>
+public class UuidDeserializer
+extends JsonDeserializer<UUID>
 {
 	@Override
-	public ObjectId deserialize(JsonParser json, DeserializationContext context)
+	public UUID deserialize(JsonParser json, DeserializationContext context)
 	throws IOException, JsonProcessingException
 	{
-		return new ObjectId(json.getText());
+		return UuidConverter.parse(json.getText());
 	}
 }

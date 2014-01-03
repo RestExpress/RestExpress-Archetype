@@ -3,8 +3,8 @@
 #set( $symbol_escape = '\' )
 package ${package}.controller;
 
-import com.strategicgains.restexpress.Request;
-import com.strategicgains.restexpress.Response;
+import org.restexpress.Request;
+import org.restexpress.Response;
 
 public class SampleController
 {

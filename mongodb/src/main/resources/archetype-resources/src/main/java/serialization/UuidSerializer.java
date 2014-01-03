@@ -1,29 +1,21 @@
 #set( $symbol_pound = '#' )
 #set( $symbol_dollar = '$' )
 #set( $symbol_escape = '\' )
-/*
- * Copyright 2013, eCollege, Inc.  All rights reserved.
- */
 package ${package}.serialization;
 
 import java.io.IOException;
-
-import org.bson.types.ObjectId;
+import java.util.UUID;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
 
-/**
- * @author fredta2
- * @since Feb 7, 2013
- */
-public class ObjectIdSerializer
-extends JsonSerializer<ObjectId>
+public class UuidSerializer
+extends JsonSerializer<UUID>
 {
 	@Override
-	public void serialize(ObjectId objectId, JsonGenerator json, SerializerProvider provider)
+	public void serialize(UUID objectId, JsonGenerator json, SerializerProvider provider)
 	throws IOException, JsonProcessingException
 	{
 		json.writeString(objectId.toString());

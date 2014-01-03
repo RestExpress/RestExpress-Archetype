@@ -20,7 +20,7 @@
 		<dependency>
 			<groupId>com.strategicgains</groupId>
 			<artifactId>RestExpress</artifactId>
-			<version>0.9.4.2</version>
+			<version>0.10.0</version>
 		</dependency>
 		<dependency>
 			<groupId>com.strategicgains</groupId>
@@ -35,17 +35,17 @@
 		<dependency>
 			<groupId>com.strategicgains.plugin-express</groupId>
 			<artifactId>CacheControlPlugin</artifactId>
-			<version>0.1.4</version>
+			<version>0.2.0-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>com.strategicgains.plugin-express</groupId>
 			<artifactId>MetricsPlugin</artifactId>
-			<version>0.1.4</version>
+			<version>0.2.0-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>com.strategicgains.plugin-express</groupId>
 			<artifactId>RoutesMetadataPlugin</artifactId>
-			<version>0.1.4</version>
+			<version>0.2.0-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>com.codahale.metrics</groupId>

@@ -8,6 +8,11 @@ import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.util.concurrent.TimeUnit;
 
+import org.restexpress.Parameters;
+import org.restexpress.RestExpress;
+import org.restexpress.exception.BadRequestException;
+import org.restexpress.pipeline.SimpleConsoleLogMessageObserver;
+import org.restexpress.util.Environment;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,18 +20,12 @@ import com.codahale.metrics.MetricFilter;
 import com.codahale.metrics.MetricRegistry;
 import com.codahale.metrics.graphite.Graphite;
 import com.codahale.metrics.graphite.GraphiteReporter;
-import com.strategicgains.restexpress.Format;
-import com.strategicgains.restexpress.Parameters;
-import com.strategicgains.restexpress.RestExpress;
-import com.strategicgains.restexpress.exception.BadRequestException;
-import com.strategicgains.restexpress.pipeline.SimpleConsoleLogMessageObserver;
 import com.strategicgains.restexpress.plugin.cache.CacheControlPlugin;
 import com.strategicgains.restexpress.plugin.metrics.MetricsPlugin;
 import com.strategicgains.restexpress.plugin.route.RoutesMetadataPlugin;
 import ${package}.config.Configuration;
 import ${package}.config.MetricsConfig;
-import ${package}.serialization.ResponseProcessors;
-import com.strategicgains.restexpress.util.Environment;
+import ${package}.serialization.SerializationProvider;
 import com.strategicgains.syntaxe.ValidationException;
 
 public class Main
@@ -42,14 +41,13 @@ public class Main
 
 	public static RestExpress initializeServer(String[] args) throws IOException
 	{
+		RestExpress.setSerializationProvider(new SerializationProvider());
+
 		Configuration config = loadEnvironment(args);
 		RestExpress server = new RestExpress()
 				.setName(SERVICE_NAME)
 				.setBaseUrl(config.getBaseUrl())
-				.setDefaultFormat(config.getDefaultFormat())
 				.setExecutorThreadCount(config.getExecutorThreadPoolSize())
-				.putResponseProcessor(Format.JSON, ResponseProcessors.json())
-				.putResponseProcessor(Format.XML, ResponseProcessors.xml())
 				.addMessageObserver(new SimpleConsoleLogMessageObserver());
 
 		Routes.define(config, server);

@@ -5,12 +5,13 @@ package ${package}.config;
 
 import java.util.Properties;
 
-import com.strategicgains.repoexpress.mongodb.MongodbEntityRepository;
-import com.strategicgains.restexpress.Format;
-import com.strategicgains.restexpress.RestExpress;
+import org.restexpress.RestExpress;
+import org.restexpress.util.Environment;
+
+import com.strategicgains.repoexpress.mongodb.MongoConfig;
+import com.strategicgains.repoexpress.mongodb.MongodbUuidEntityRepository;
 import ${package}.controller.SampleController;
 import ${package}.domain.Sample;
-import com.strategicgains.restexpress.util.Environment;
 
 public class Configuration
 extends Environment
@@ -18,12 +19,10 @@ extends Environment
 	private static final String DEFAULT_EXECUTOR_THREAD_POOL_SIZE = "20";
 
 	private static final String PORT_PROPERTY = "port";
-	private static final String DEFAULT_FORMAT_PROPERTY = "default.format";
 	private static final String BASE_URL_PROPERTY = "base.url";
 	private static final String EXECUTOR_THREAD_POOL_SIZE = "executor.threadPool.size";
 
 	private int port;
-	private String defaultFormat;
 	private String baseUrl;
 	private int executorThreadPoolSize;
 	private MetricsConfig metricsSettings;
@@ -34,7 +33,6 @@ extends Environment
 	protected void fillValues(Properties p)
 	{
 		this.port = Integer.parseInt(p.getProperty(PORT_PROPERTY, String.valueOf(RestExpress.DEFAULT_PORT)));
-		this.defaultFormat = p.getProperty(DEFAULT_FORMAT_PROPERTY, Format.JSON);
 		this.baseUrl = p.getProperty(BASE_URL_PROPERTY, "http://localhost:" + String.valueOf(port));
 		this.executorThreadPoolSize = Integer.parseInt(p.getProperty(EXECUTOR_THREAD_POOL_SIZE, DEFAULT_EXECUTOR_THREAD_POOL_SIZE));
 		this.metricsSettings = new MetricsConfig(p);
@@ -45,13 +43,8 @@ extends Environment
 	private void initialize(MongoConfig mongo)
 	{
 		@SuppressWarnings("unchecked")
-        MongodbEntityRepository<Sample> orderRepository = new MongodbEntityRepository<Sample>(mongo.getClient(), mongo.getDbName(), Sample.class);
+        MongodbUuidEntityRepository<Sample> orderRepository = new MongodbUuidEntityRepository<Sample>(mongo.getClient(), mongo.getDbName(), Sample.class);
 		sampleController = new SampleController(orderRepository);
-	}
-
-	public String getDefaultFormat()
-	{
-		return defaultFormat;
 	}
 
 	public int getPort()

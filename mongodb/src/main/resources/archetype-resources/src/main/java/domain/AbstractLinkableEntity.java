@@ -10,14 +10,13 @@ import java.util.List;
 
 import com.strategicgains.hyperexpress.domain.Link;
 import com.strategicgains.hyperexpress.domain.Linkable;
-import com.strategicgains.repoexpress.mongodb.AbstractMongodbEntity;
+import com.strategicgains.repoexpress.mongodb.AbstractUuidMongodbEntity;
 
 /**
- * @author toddf
- * @since Oct 18, 2012
+ * Base MongoDB entity, identified by a UUID and can contain a list of Link elements.
  */
 public abstract class AbstractLinkableEntity
-extends AbstractMongodbEntity
+extends AbstractUuidMongodbEntity
 implements Linkable
 {
 	private List<Link> links;

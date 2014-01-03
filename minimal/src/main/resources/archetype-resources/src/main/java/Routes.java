@@ -4,8 +4,8 @@
 package ${package};
 
 import org.jboss.netty.handler.codec.http.HttpMethod;
+import org.restexpress.RestExpress;
 
-import com.strategicgains.restexpress.RestExpress;
 import ${package}.config.Configuration;
 
 public abstract class Routes
