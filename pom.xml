@@ -18,6 +18,7 @@
 	<modules>
 		<module>minimal</module>
 		<module>mongodb</module>
+		<module>cassandra</module>
 	</modules>
 
 	<issueManagement>

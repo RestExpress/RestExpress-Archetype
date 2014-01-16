@@ -3,11 +3,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.strategicgains.archetype</groupId>
-  <artifactId>restexpress-scaffold-mongodb</artifactId>
+  <artifactId>restexpress-mongodb</artifactId>
   <version>1.8-SNAPSHOT</version>
   <packaging>maven-archetype</packaging>
 
-  <name>restexpress-scaffold-mongodb</name>
+  <name>restexpress-mongodb</name>
 
   <parent>
     <groupId>com.strategicgains.archetype</groupId>
@@ -37,5 +37,5 @@
 
   <description>A Basic, MongoDB-backed Service Suite</description>
 
-  <url>https://github.com/RestExpress/RestExpress-Scaffold</url>
+  <url>https://github.com/RestExpress/RestExpress-Archetype</url>
 </project>

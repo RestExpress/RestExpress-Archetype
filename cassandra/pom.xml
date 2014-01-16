@@ -3,11 +3,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.strategicgains.archetype</groupId>
-  <artifactId>restexpress-minimal</artifactId>
+  <artifactId>restexpress-cassandra</artifactId>
   <version>1.8-SNAPSHOT</version>
   <packaging>maven-archetype</packaging>
 
-  <name>RestExpress-minimal</name>
+  <name>restexpress-cassandra</name>
 
   <parent>
     <groupId>com.strategicgains.archetype</groupId>
@@ -35,7 +35,7 @@
     </pluginManagement>
   </build>
 
-  <description>A Minimal RestExpress Server</description>
+  <description>A Basic, Cassandra-backed Service Suite</description>
 
   <url>https://github.com/RestExpress/RestExpress-Archetype</url>
 </project>
