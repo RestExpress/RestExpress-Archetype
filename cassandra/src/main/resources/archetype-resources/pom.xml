@@ -103,7 +103,7 @@
 				<artifactId>exec-maven-plugin</artifactId>
 				<version>1.2.1</version>
 				<configuration>
-					<mainClass>org.restexpress.scaffold.cassandra.Main</mainClass>
+					<mainClass>${package}.Main</mainClass>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -116,7 +116,7 @@
 						<manifest>
 							<addClasspath>true</addClasspath>
 							<classpathPrefix>./lib/</classpathPrefix>
-							<mainClass>org.restexpress.scaffold.cassandra.Main</mainClass>
+							<mainClass>${package}.Main</mainClass>
 						</manifest>
 					</archive>
 				</configuration>

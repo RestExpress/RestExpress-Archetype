@@ -6,12 +6,15 @@ package ${package}.config;
 import java.util.Properties;
 
 import org.restexpress.RestExpress;
+import ${package}.controller.SampleOidEntityController;
+import ${package}.controller.SampleUuidEntityController;
+import ${package}.persistence.SampleOidEntityRepository;
+import ${package}.persistence.SampleUuidEntityRepository;
+import ${package}.service.SampleOidEntityService;
+import ${package}.service.SampleUuidEntityService;
 import org.restexpress.util.Environment;
 
 import com.strategicgains.repoexpress.mongodb.MongoConfig;
-import com.strategicgains.repoexpress.mongodb.MongodbUuidEntityRepository;
-import ${package}.controller.SampleController;
-import ${package}.domain.Sample;
 
 public class Configuration
 extends Environment
@@ -27,7 +30,8 @@ extends Environment
 	private int executorThreadPoolSize;
 	private MetricsConfig metricsSettings;
 
-	private SampleController sampleController;
+	private SampleUuidEntityController sampleUuidController;
+	private SampleOidEntityController sampleOidController;
 
 	@Override
 	protected void fillValues(Properties p)
@@ -42,9 +46,13 @@ extends Environment
 
 	private void initialize(MongoConfig mongo)
 	{
-		@SuppressWarnings("unchecked")
-        MongodbUuidEntityRepository<Sample> orderRepository = new MongodbUuidEntityRepository<Sample>(mongo.getClient(), mongo.getDbName(), Sample.class);
-		sampleController = new SampleController(orderRepository);
+        SampleUuidEntityRepository samplesUuidRepository = new SampleUuidEntityRepository(mongo.getClient(), mongo.getDbName());
+		SampleUuidEntityService sampleUuidService = new SampleUuidEntityService(samplesUuidRepository);
+		sampleUuidController = new SampleUuidEntityController(sampleUuidService);
+
+		SampleOidEntityRepository samplesOidRepository = new SampleOidEntityRepository(mongo.getClient(), mongo.getDbName());
+		SampleOidEntityService sampleOidService = new SampleOidEntityService(samplesOidRepository);
+		sampleOidController = new SampleOidEntityController(sampleOidService);
 	}
 
 	public int getPort()
@@ -67,8 +75,13 @@ extends Environment
 	    return metricsSettings;
     }
 
-	public SampleController getSampleController()
+	public SampleUuidEntityController getSampleUuidEntityController()
 	{
-		return sampleController;
+		return sampleUuidController;
+	}
+
+	public SampleOidEntityController getSampleOidEntityController()
+	{
+		return sampleOidController;
 	}
 }

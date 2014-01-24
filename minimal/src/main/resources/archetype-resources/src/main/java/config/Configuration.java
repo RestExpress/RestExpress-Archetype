@@ -6,9 +6,8 @@ package ${package}.config;
 import java.util.Properties;
 
 import org.restexpress.RestExpress;
-import org.restexpress.util.Environment;
-
 import ${package}.controller.SampleController;
+import org.restexpress.util.Environment;
 
 public class Configuration
 extends Environment

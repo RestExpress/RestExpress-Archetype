@@ -11,7 +11,7 @@ public class Constants
 	public class Url
 	{
 		//TODO: Your URL parameter names here...
-		public static final String SAMPLE_ID = "sampleId";
+		public static final String SAMPLE_ID = "uuid";
 	}
 
 	/**
@@ -21,7 +21,9 @@ public class Constants
 	public class Routes
 	{
 		//TODO: Your Route names here...
-		public static final String SINGLE_SAMPLE = "sample.single.route";
-		public static final String SAMPLE_COLLECTION = "sample.collection.route";
+		public static final String SINGLE_UUID_SAMPLE = "sample.single.route.uuid";
+		public static final String SAMPLE_UUID_COLLECTION = "sample.collection.route.uuid";
+		public static final String SINGLE_OID_SAMPLE = "sample.single.route.oid";
+		public static final String SAMPLE_OID_COLLECTION = "sample.collection.route.oid";
 	}
 }

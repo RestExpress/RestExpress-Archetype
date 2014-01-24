@@ -14,6 +14,9 @@ import org.restexpress.exception.BadRequestException;
 import org.restexpress.exception.ConflictException;
 import org.restexpress.exception.NotFoundException;
 import org.restexpress.pipeline.SimpleConsoleLogMessageObserver;
+import ${package}.config.Configuration;
+import ${package}.config.MetricsConfig;
+import ${package}.serialization.SerializationProvider;
 import org.restexpress.util.Environment;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,9 +31,6 @@ import com.strategicgains.repoexpress.exception.ItemNotFoundException;
 import com.strategicgains.restexpress.plugin.cache.CacheControlPlugin;
 import com.strategicgains.restexpress.plugin.metrics.MetricsPlugin;
 import com.strategicgains.restexpress.plugin.route.RoutesMetadataPlugin;
-import ${package}.config.Configuration;
-import ${package}.config.MetricsConfig;
-import ${package}.serialization.SerializationProvider;
 import com.strategicgains.syntaxe.ValidationException;
 
 public class Main
@@ -53,10 +53,7 @@ public class Main
 		RestExpress server = new RestExpress()
 				.setName(SERVICE_NAME)
 				.setBaseUrl(config.getBaseUrl())
-//				.setDefaultFormat(config.getDefaultFormat())
 				.setExecutorThreadCount(config.getExecutorThreadPoolSize())
-//				.putResponseProcessor(Format.JSON, ResponseProcessors.json())
-//				.putResponseProcessor(Format.XML, ResponseProcessors.xml())
 				.addMessageObserver(new SimpleConsoleLogMessageObserver());
 
 		Routes.define(config, server);

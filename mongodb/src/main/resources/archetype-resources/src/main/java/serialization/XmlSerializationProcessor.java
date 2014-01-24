@@ -3,11 +3,11 @@
 #set( $symbol_escape = '\' )
 package ${package}.serialization;
 
+import ${package}.domain.SampleUuidEntity;
 import org.serialization.xml.XstreamXmlProcessor;
 
 import com.strategicgains.hyperexpress.domain.Link;
 import com.strategicgains.hyperexpress.domain.LinkableCollection;
-import ${package}.domain.Sample;
 
 public class XmlSerializationProcessor
 extends XstreamXmlProcessor
@@ -15,7 +15,7 @@ extends XstreamXmlProcessor
 	public XmlSerializationProcessor()
     {
 	    super();
-	    alias("sample", Sample.class);
+	    alias("sample", SampleUuidEntity.class);
 		alias("link", Link.class);
 		alias("collection", LinkableCollection.class);
 //		alias("element_name", Element.class);

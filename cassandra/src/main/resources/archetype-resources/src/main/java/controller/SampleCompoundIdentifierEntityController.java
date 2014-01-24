@@ -18,6 +18,13 @@ import ${package}.service.SampleCompoundIdentifierEntityService;
 import com.strategicgains.hyperexpress.UrlBuilder;
 import com.strategicgains.repoexpress.domain.Identifier;
 
+/**
+ * This is the 'controller' layer, where HTTP details are converted to domain concepts and passed to the service layer.
+ * Then service layer response information is enhanced with HTTP details, if applicable, for the response.
+ * <p/>
+ * This controller demonstrates how to process a Cassandra entity that has a compound row key, instead of one that has
+ * a single, primary row key such as a UUID.
+ */
 public class SampleCompoundIdentifierEntityController
 {
 	private SampleCompoundIdentifierEntityService service;
@@ -44,9 +51,6 @@ public class SampleCompoundIdentifierEntityController
 			throw new BadRequestException("Key2 in URL and Key2 in resource body must match");
 		}
 
-		// As an alternative to the above guard clause, you could just force the IDs for some use cases...
-//		toCreate.setKey1(key1);
-//		toCreate.setKey2(key2);
 		SampleCompoundIdentifierEntity saved = service.create(toCreate);
 
 		// Construct the response for create...
@@ -60,6 +64,8 @@ public class SampleCompoundIdentifierEntityController
 			.param(Constants.Url.KEY3, saved.getKey3())
 			.build());
 
+		// enrich the resource with links, etc. here...
+
 		// Return the newly-created resource...
 		return saved;
 	}
@@ -69,20 +75,11 @@ public class SampleCompoundIdentifierEntityController
 		String key1 = request.getHeader(Constants.Url.KEY1, "Key1 not provided");
 		String key2 = request.getHeader(Constants.Url.KEY2, "Key2 not provided");
 		String key3 = request.getHeader(Constants.Url.KEY3, "Key3 not provided");
-		SampleCompoundIdentifierEntity sample = service.read(key1, key2, key3);
+		SampleCompoundIdentifierEntity entity = service.read(new Identifier(key1, key2, key3));
 
-		addSelfLink(request, sample);
+		// enrich the resource with links, etc. here...
 
-		// Add 'up' link
-//		String upPattern = request.getNamedUrl(HttpMethod.GET, Constants.Routes.SAMPLE_COLLECTION);
-//		LinkDefinition upLink = new HalLinkBuilder(upPattern)
-//			.urlParam(Constants.Url.KEY1, key1)
-//			.urlParam(Constants.Url.KEY2, key2)
-//			.title("This resource's containing collection")
-//			.build();
-//		sample.linkTo(RelTypes.UP, upLink);
-
-		return sample;
+		return entity;
 	}
 
 	public List<SampleCompoundIdentifierEntity> readAll(Request request, Response response)
@@ -90,34 +87,13 @@ public class SampleCompoundIdentifierEntityController
 		String key1 = request.getHeader(Constants.Url.KEY1, "Key1 not provided");
 		String key2 = request.getHeader(Constants.Url.KEY2, "Key2 not provided");
 		QueryRange range = QueryRanges.parseFrom(request);
-		List<SampleCompoundIdentifierEntity> samples = service.readAll(key1, key2);
+		List<SampleCompoundIdentifierEntity> entities = service.readAll(key1, key2);
 		long count = service.count(key1, key2);
-		response.setCollectionResponse(range, samples.size(), count);
+		response.setCollectionResponse(range, entities.size(), count);
 
-		// Add 'self' link
-//		String selfPattern = request.getNamedUrl(HttpMethod.GET, Constants.Routes.SAMPLE_COLLECTION);
-//		LinkDefinition selfLink = new HalLinkBuilder(selfPattern)
-//			.urlParam(Constants.Url.KEY1, key1)
-//			.urlParam(Constants.Url.KEY2, key2)
-//			.build();
-//		HalResource resource = new HalResource();
-//		resource.linkTo(RelTypes.SELF, selfLink);
-//		String eachSelfPattern = request.getNamedUrl(HttpMethod.GET, Constants.Routes.SINGLE_SAMPLE);
-//
-//		for (SampleCompoundIdentifierEntity result : samples)
-//		{
-//			LinkDefinition eachSelfLink = new HalLinkBuilder(eachSelfPattern)
-//				.urlParam(Constants.Url.KEY1, result.getKey1())
-//				.urlParam(Constants.Url.KEY2, result.getKey2())
-//				.urlParam(Constants.Url.KEY3, result.getKey3())
-//				.build();
-//			result.linkTo(RelTypes.SELF, eachSelfLink);
-//
-//			resource.embed("samples", result);
-//		}
-//
-//		return resource;
-		return samples;
+		// enrich the results collection with links, etc. here...
+
+		return entities;
 	}
 
 	public void update(Request request, Response response)
@@ -132,10 +108,6 @@ public class SampleCompoundIdentifierEntityController
 			throw new BadRequestException("ID in URL and ID in resource body must match");
 		}
 
-		// As an alternative to the above guard clause, you could just force the IDs for some use cases...
-//		toUpdate.setKey1(key1);
-//		toUpdate.setKey2(key2);
-//		toUpdate.setKey3(key3);
 		service.update(toUpdate);
 		response.setResponseNoContent();
 	}
@@ -145,18 +117,7 @@ public class SampleCompoundIdentifierEntityController
 		String key1 = request.getHeader(Constants.Url.KEY1, "Key1 not provided");
 		String key2 = request.getHeader(Constants.Url.KEY2, "Key2 not provided");
 		String key3 = request.getHeader(Constants.Url.KEY3, "Key3 not provided");
-		service.delete(key1, key2, key3);
+		service.delete(new Identifier(key1, key2, key3));
 		response.setResponseNoContent();
 	}
-
-	private void addSelfLink(Request request, SampleCompoundIdentifierEntity sample)
-    {
-//	    String selfPattern = request.getNamedUrl(HttpMethod.GET, Constants.Routes.SINGLE_SAMPLE);
-//		LinkDefinition selfLink = new HalLinkBuilder(selfPattern)
-//			.urlParam(Constants.Url.KEY1, sample.getKey1())
-//			.urlParam(Constants.Url.KEY2, sample.getKey2())
-//			.urlParam(Constants.Url.KEY3, sample.getKey3())
-//			.build();
-//		sample.linkTo(RelTypes.SELF, selfLink);
-    }
 }

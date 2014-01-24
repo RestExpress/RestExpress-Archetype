@@ -22,12 +22,12 @@
 		<dependency>
 			<groupId>com.strategicgains</groupId>
 			<artifactId>RestExpress</artifactId>
-			<version>0.10.0</version>
+			<version>0.10.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>com.strategicgains</groupId>
-			<artifactId>HyperExpress</artifactId>
-			<version>1.0.2</version>
+			<artifactId>HyperExpress-HAL</artifactId>
+			<version>1.0.3-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>com.strategicgains</groupId>

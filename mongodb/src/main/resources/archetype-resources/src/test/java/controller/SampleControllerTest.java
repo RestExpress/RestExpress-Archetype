@@ -17,7 +17,6 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.restexpress.RestExpress;
-
 import ${package}.Main;
 
 public class SampleControllerTest {
@@ -55,7 +54,7 @@ public class SampleControllerTest {
 
     @Test
     public void postDirectiveReplayRequest() throws IOException {
-        HttpGet getRequest = new HttpGet(BASE_URL + "/your/route/here/123.json");
+        HttpGet getRequest = new HttpGet(BASE_URL + "/samples/uuid/123.json");
         final HttpResponse response = httpClient.execute(getRequest);
         assertEquals(400, response.getStatusLine().getStatusCode());
     }

@@ -3,6 +3,11 @@
 #set( $symbol_escape = '\' )
 package ${package}.service;
 
+import java.util.List;
+
+import org.restexpress.common.query.QueryFilter;
+import org.restexpress.common.query.QueryOrder;
+import org.restexpress.common.query.QueryRange;
 import ${package}.domain.SampleUuidEntity;
 import ${package}.persistence.SampleUuidEntityRepository;
 
@@ -43,5 +48,15 @@ public class SampleUuidEntityService
 	public void delete(Identifier id)
     {
 		samples.delete(id);
+    }
+
+	public List<SampleUuidEntity> readAll(QueryFilter filter, QueryRange range, QueryOrder order)
+    {
+		return samples.readAll(filter, range, order);
+    }
+
+	public long count(QueryFilter filter)
+    {
+		return samples.count(filter);
     }
 }

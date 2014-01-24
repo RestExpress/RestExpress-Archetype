@@ -53,10 +53,7 @@ public class Main
 		RestExpress server = new RestExpress()
 				.setName(SERVICE_NAME)
 				.setBaseUrl(config.getBaseUrl())
-//				.setDefaultFormat(config.getDefaultFormat())
 				.setExecutorThreadCount(config.getExecutorThreadPoolSize())
-//				.putResponseProcessor(Format.JSON, ResponseProcessors.json())
-//				.putResponseProcessor(Format.XML, ResponseProcessors.xml())
 				.addMessageObserver(new SimpleConsoleLogMessageObserver());
 
 		Routes.define(config, server);

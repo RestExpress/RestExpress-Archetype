@@ -15,31 +15,25 @@ public class SampleController
 
 	public Object create(Request request, Response response)
 	{
-		//TODO: Your 'create' logic here...
+		//TODO: Your 'POST' logic here...
 		return null;
 	}
 
 	public Object read(Request request, Response response)
 	{
-		//TODO: Your 'read' logic here...
+		//TODO: Your 'GET' logic here...
 		return null;
 	}
 
-//	public LinkableCollection<Object> readAll(Request request, Response response)
-//	{
-//		//TODO: Your 'readAll' logic here...
-//		return null;
-//	}
-
 	public void update(Request request, Response response)
 	{
-		//TODO: Your 'update' logic here...
+		//TODO: Your 'PUT' logic here...
 		response.setResponseNoContent();
 	}
 
 	public void delete(Request request, Response response)
 	{
-		//TODO: Your 'delete' logic here...
+		//TODO: Your 'DELETE' logic here...
 		response.setResponseNoContent();
 	}
 }

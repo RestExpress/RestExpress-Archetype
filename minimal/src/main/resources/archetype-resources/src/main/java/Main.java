@@ -12,6 +12,9 @@ import org.restexpress.Parameters;
 import org.restexpress.RestExpress;
 import org.restexpress.exception.BadRequestException;
 import org.restexpress.pipeline.SimpleConsoleLogMessageObserver;
+import ${package}.config.Configuration;
+import ${package}.config.MetricsConfig;
+import ${package}.serialization.SerializationProvider;
 import org.restexpress.util.Environment;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,9 +26,6 @@ import com.codahale.metrics.graphite.GraphiteReporter;
 import com.strategicgains.restexpress.plugin.cache.CacheControlPlugin;
 import com.strategicgains.restexpress.plugin.metrics.MetricsPlugin;
 import com.strategicgains.restexpress.plugin.route.RoutesMetadataPlugin;
-import ${package}.config.Configuration;
-import ${package}.config.MetricsConfig;
-import ${package}.serialization.SerializationProvider;
 import com.strategicgains.syntaxe.ValidationException;
 
 public class Main
