@@ -15,6 +15,7 @@ import ${package}.service.SampleUuidEntityService;
 import org.restexpress.util.Environment;
 
 import com.strategicgains.repoexpress.mongodb.MongoConfig;
+import com.strategicgains.restexpress.plugin.metrics.MetricsConfig;
 
 public class Configuration
 extends Environment

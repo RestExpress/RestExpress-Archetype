@@ -4,7 +4,7 @@
 package ${package}.serialization;
 
 import ${package}.domain.SampleUuidEntity;
-import org.serialization.xml.XstreamXmlProcessor;
+import org.restexpress.serialization.xml.XstreamXmlProcessor;
 
 public class XmlSerializationProcessor
 extends XstreamXmlProcessor

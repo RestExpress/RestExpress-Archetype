@@ -1,13 +1,15 @@
 #set( $symbol_pound = '#' )
 #set( $symbol_dollar = '$' )
 #set( $symbol_escape = '\' )
-package ${package}.config;
+package org.restexpress.scaffold.minimal.config;
 
 import java.util.Properties;
 
 import org.restexpress.RestExpress;
-import ${package}.controller.SampleController;
+import org.restexpress.scaffold.minimal.controller.SampleController;
 import org.restexpress.util.Environment;
+
+import com.strategicgains.restexpress.plugin.metrics.MetricsConfig;
 
 public class Configuration
 extends Environment

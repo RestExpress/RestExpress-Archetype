@@ -1,20 +1,19 @@
 #set( $symbol_pound = '#' )
 #set( $symbol_dollar = '$' )
 #set( $symbol_escape = '\' )
-package ${package};
+package org.restexpress.scaffold.minimal;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.util.concurrent.TimeUnit;
 
-import org.restexpress.Parameters;
+import org.restexpress.Flags;
 import org.restexpress.RestExpress;
 import org.restexpress.exception.BadRequestException;
 import org.restexpress.pipeline.SimpleConsoleLogMessageObserver;
-import ${package}.config.Configuration;
-import ${package}.config.MetricsConfig;
-import ${package}.serialization.SerializationProvider;
+import org.restexpress.scaffold.minimal.config.Configuration;
+import org.restexpress.scaffold.minimal.serialization.SerializationProvider;
 import org.restexpress.util.Environment;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,8 +23,10 @@ import com.codahale.metrics.MetricRegistry;
 import com.codahale.metrics.graphite.Graphite;
 import com.codahale.metrics.graphite.GraphiteReporter;
 import com.strategicgains.restexpress.plugin.cache.CacheControlPlugin;
+import com.strategicgains.restexpress.plugin.cors.CorsHeaderPlugin;
+import com.strategicgains.restexpress.plugin.metrics.MetricsConfig;
 import com.strategicgains.restexpress.plugin.metrics.MetricsPlugin;
-import com.strategicgains.restexpress.plugin.route.RoutesMetadataPlugin;
+import com.strategicgains.restexpress.plugin.swagger.SwaggerPlugin;
 import com.strategicgains.syntaxe.ValidationException;
 
 public class Main
@@ -53,12 +54,15 @@ public class Main
 		Routes.define(config, server);
 		configureMetrics(config, server);
 
-		new RoutesMetadataPlugin()							// Support basic discoverability.
-				.register(server)
-				.parameter(Parameters.Cache.MAX_AGE, 86400);	// Cache for 1 day (24 hours).
+		new SwaggerPlugin()
+			.flag(Flags.Auth.PUBLIC_ROUTE)
+			.register(server);
+
+		new CorsHeaderPlugin("*")
+			.register(server);
 
 		new CacheControlPlugin()							// Support caching headers.
-				.register(server);
+			.register(server);
 
 		mapExceptions(server);
 		server.bind(config.getPort());

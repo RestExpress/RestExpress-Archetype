@@ -1,7 +1,10 @@
 #set( $symbol_pound = '#' )
 #set( $symbol_dollar = '$' )
 #set( $symbol_escape = '\' )
-package ${package}.controller;
+package org.restexpress.scaffold.minimal.controller;
+
+import java.util.Collections;
+import java.util.List;
 
 import org.restexpress.Request;
 import org.restexpress.Response;
@@ -23,6 +26,12 @@ public class SampleController
 	{
 		//TODO: Your 'GET' logic here...
 		return null;
+	}
+
+	public List<Object> readAll(Request request, Response response)
+	{
+		//TODO: Your 'GET collection' logic here...
+		return Collections.emptyList();
 	}
 
 	public void update(Request request, Response response)
