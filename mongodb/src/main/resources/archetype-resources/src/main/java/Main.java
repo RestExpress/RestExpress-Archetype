@@ -3,6 +3,13 @@
 #set( $symbol_escape = '\' )
 package ${package};
 
+import static org.jboss.netty.handler.codec.http.HttpHeaders.Names.ACCEPT;
+import static org.jboss.netty.handler.codec.http.HttpHeaders.Names.AUTHORIZATION;
+import static org.jboss.netty.handler.codec.http.HttpHeaders.Names.CONTENT_TYPE;
+import static org.jboss.netty.handler.codec.http.HttpHeaders.Names.LOCATION;
+import static org.jboss.netty.handler.codec.http.HttpHeaders.Names.REFERER;
+import static org.restexpress.Flags.Auth.PUBLIC_ROUTE;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -14,6 +21,8 @@ import org.restexpress.exception.BadRequestException;
 import org.restexpress.exception.ConflictException;
 import org.restexpress.exception.NotFoundException;
 import org.restexpress.pipeline.SimpleConsoleLogMessageObserver;
+import org.restexpress.plugin.hyperexpress.HyperExpressPlugin;
+import org.restexpress.plugin.hyperexpress.Linkable;
 import ${package}.config.Configuration;
 import ${package}.serialization.SerializationProvider;
 import org.restexpress.util.Environment;
@@ -58,21 +67,33 @@ public class Main
 				.addMessageObserver(new SimpleConsoleLogMessageObserver());
 
 		Routes.define(config, server);
-		configureMetrics(config, server);
+		Relationships.define(server);
+		configurePlugins(config, server);
+		mapExceptions(server);
+		server.bind(config.getPort());
+		return server;
+    }
+
+	private static void configurePlugins(Configuration config,
+        RestExpress server)
+    {
+	    configureMetrics(config, server);
 
 		new SwaggerPlugin()
 			.flag(Flags.Auth.PUBLIC_ROUTE)
 			.register(server);
 
-		new CorsHeaderPlugin("*")
-			.register(server);
-
 		new CacheControlPlugin()							// Support caching headers.
 				.register(server);
 
-		mapExceptions(server);
-		server.bind(config.getPort());
-		return server;
+		new HyperExpressPlugin(Linkable.class)
+			.register(server);
+
+		new CorsHeaderPlugin("*")
+			.flag(PUBLIC_ROUTE)
+		    .allowHeaders(CONTENT_TYPE, ACCEPT, AUTHORIZATION, REFERER, LOCATION)
+		    .exposeHeaders(LOCATION)
+		    .register(server);
     }
 
 	private static void configureMetrics(Configuration config, RestExpress server)

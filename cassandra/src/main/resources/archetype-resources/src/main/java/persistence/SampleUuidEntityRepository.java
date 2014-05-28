@@ -9,10 +9,10 @@ import com.datastax.driver.core.BoundStatement;
 import com.datastax.driver.core.PreparedStatement;
 import com.datastax.driver.core.Row;
 import com.datastax.driver.core.Session;
-import com.strategicgains.repoexpress.cassandra.CassandraTimestampedEntityRepository;
+import com.strategicgains.repoexpress.cassandra.CassandraUuidTimestampedEntityRepository;
 
 public class SampleUuidEntityRepository
-extends CassandraTimestampedEntityRepository<SampleUuidEntity>
+extends CassandraUuidTimestampedEntityRepository<SampleUuidEntity>
 {
 	private static final String UPDATE_CQL = "update %s set updatedat = ? where %s = ?";
 	private static final String CREATE_CQL = "insert into %s (%s, createdat, updatedat) values (?, ?, ?)";

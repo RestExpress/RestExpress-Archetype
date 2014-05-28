@@ -11,7 +11,6 @@ import org.restexpress.Response;
 import org.restexpress.common.query.QueryFilter;
 import org.restexpress.common.query.QueryOrder;
 import org.restexpress.common.query.QueryRange;
-import org.restexpress.exception.BadRequestException;
 import org.restexpress.query.QueryFilters;
 import org.restexpress.query.QueryOrders;
 import org.restexpress.query.QueryRanges;
@@ -19,9 +18,11 @@ import ${package}.Constants;
 import ${package}.domain.SampleUuidEntity;
 import ${package}.service.SampleUuidEntityService;
 
-import com.strategicgains.hyperexpress.UrlBuilder;
+import com.strategicgains.hyperexpress.HyperExpress;
+import com.strategicgains.hyperexpress.builder.TokenBinder;
+import com.strategicgains.hyperexpress.builder.TokenResolver;
+import com.strategicgains.hyperexpress.builder.UrlBuilder;
 import com.strategicgains.repoexpress.adapter.Identifiers;
-import com.strategicgains.repoexpress.util.UuidConverter;
 
 /**
  * This is the 'controller' layer, where HTTP details are converted to domain concepts and passed to the service layer.
@@ -31,6 +32,7 @@ import com.strategicgains.repoexpress.util.UuidConverter;
  */
 public class SampleUuidEntityController
 {
+	private static final UrlBuilder LOCATION_BUILDER = new UrlBuilder();
 	private SampleUuidEntityService service;
 
 	public SampleUuidEntityController(SampleUuidEntityService sampleService)
@@ -49,11 +51,11 @@ public class SampleUuidEntityController
 
 		// Include the Location header...
 		String locationPattern = request.getNamedUrl(HttpMethod.GET, Constants.Routes.SINGLE_UUID_SAMPLE);
-		response.addLocationHeader(new UrlBuilder(locationPattern)
-			.param(Constants.Url.SAMPLE_ID, saved.getId().toString())
-			.build());
+		response.addLocationHeader(LOCATION_BUILDER.build(locationPattern, new TokenResolver()
+			.bind(Constants.Url.SAMPLE_ID, Identifiers.UUID.format(saved.getUuid()))));
 
-		// enrich the resource with links, etc. here...
+		// Bind the resource with link URL tokens, etc. here...
+		HyperExpress.bind(Constants.Url.SAMPLE_ID, Identifiers.UUID.format(saved.getUuid()));
 
 		// Return the newly-created resource...
 		return saved;
@@ -64,8 +66,8 @@ public class SampleUuidEntityController
 		String id = request.getHeader(Constants.Url.SAMPLE_ID, "No resource ID supplied");
 		SampleUuidEntity entity = service.read(Identifiers.UUID.parse(id));
 
-		// enrich the resource with links, etc. here...
-
+		// Bind the resource with link URL tokens, etc. here...
+		HyperExpress.bind(Constants.Url.SAMPLE_ID, Identifiers.UUID.format(entity.getUuid()));
 		return entity;
 	}
 
@@ -78,7 +80,16 @@ public class SampleUuidEntityController
 		long count = service.count(filter);
 		response.setCollectionResponse(range, entities.size(), count);
 
-		// enrich the results collection, with links, etc. here...
+		// Bind the resources in the collection with link URL tokens, etc. here...
+		HyperExpress.tokenBinder(new TokenBinder()
+		{
+			@Override
+			public void bind(Object object, TokenResolver resolver)
+			{
+				SampleUuidEntity entity = (SampleUuidEntity) object;
+				resolver.bind(Constants.Url.SAMPLE_ID, Identifiers.UUID.format(entity.getUuid()));
+			}
+		});
 
 		return entities;
 	}
@@ -87,12 +98,7 @@ public class SampleUuidEntityController
 	{
 		String id = request.getHeader(Constants.Url.SAMPLE_ID, "No resource ID supplied");
 		SampleUuidEntity entity = request.getBodyAs(SampleUuidEntity.class, "Resource details not provided");
-		
-		if (!Identifiers.UUID.parse(id).equals(entity.getId()))
-		{
-			throw new BadRequestException("ID in URL and ID in resource body must match");
-		}
-
+		entity.setId(Identifiers.UUID.parse(id));
 		service.update(entity);
 		response.setResponseNoContent();
 	}

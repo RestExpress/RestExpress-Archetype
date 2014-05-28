@@ -1,7 +1,7 @@
 #set( $symbol_pound = '#' )
 #set( $symbol_dollar = '$' )
 #set( $symbol_escape = '\' )
-package org.restexpress.scaffold.minimal.serialization;
+package ${package}.serialization;
 
 import org.restexpress.serialization.json.JacksonJsonProcessor;
 

@@ -6,12 +6,13 @@ package ${package}.controller;
 import org.jboss.netty.handler.codec.http.HttpMethod;
 import org.restexpress.Request;
 import org.restexpress.Response;
-import org.restexpress.exception.BadRequestException;
 import ${package}.Constants;
 import ${package}.domain.SampleUuidEntity;
 import ${package}.service.SampleUuidEntityService;
 
-import com.strategicgains.hyperexpress.UrlBuilder;
+import com.strategicgains.hyperexpress.HyperExpress;
+import com.strategicgains.hyperexpress.builder.TokenResolver;
+import com.strategicgains.hyperexpress.builder.UrlBuilder;
 import com.strategicgains.repoexpress.adapter.Identifiers;
 import com.strategicgains.repoexpress.util.UuidConverter;
 
@@ -24,6 +25,7 @@ import com.strategicgains.repoexpress.util.UuidConverter;
  */
 public class SampleUuidEntityController
 {
+	private static final UrlBuilder LOCATION_BUILDER = new UrlBuilder();
 	private SampleUuidEntityService service;
 	
 	public SampleUuidEntityController(SampleUuidEntityService sampleService)
@@ -42,11 +44,11 @@ public class SampleUuidEntityController
 
 		// Include the Location header...
 		String locationPattern = request.getNamedUrl(HttpMethod.GET, Constants.Routes.SINGLE_UUID_SAMPLE);
-		response.addLocationHeader(new UrlBuilder(locationPattern)
-			.param(Constants.Url.UUID, saved.getId().toString())
-			.build());
+		response.addLocationHeader(LOCATION_BUILDER.build(locationPattern, new TokenResolver()
+			.bind(Constants.Url.UUID, Identifiers.UUID.format(saved.getUuid()))));
 
-		// enrich the resource with links, etc. here...
+		// Bind the resource with link URL tokens, etc. here...
+		HyperExpress.bind(Constants.Url.UUID, Identifiers.UUID.format(saved.getUuid()));
 
 		// Return the newly-created resource...
 		return saved;
@@ -57,7 +59,8 @@ public class SampleUuidEntityController
 		String id = request.getHeader(Constants.Url.UUID, "No resource ID supplied");
 		SampleUuidEntity entity = service.read(Identifiers.UUID.parse(id));
 
-		// enrich the entity with links, etc. here...
+		// Bind the resource with link URL tokens, etc. here...
+		HyperExpress.bind(Constants.Url.UUID, Identifiers.UUID.format(entity.getUuid()));
 
 		return entity;
 	}
@@ -66,12 +69,7 @@ public class SampleUuidEntityController
 	{
 		String id = request.getHeader(Constants.Url.UUID, "No resource ID supplied");
 		SampleUuidEntity entity = request.getBodyAs(SampleUuidEntity.class, "Resource details not provided");
-		
-		if (!Identifiers.UUID.parse(id).equals(entity.getId()))
-		{
-			throw new BadRequestException("ID in URL and ID in resource body must match");
-		}
-
+		entity.setUuid(UuidConverter.parse(id));
 		service.update(entity);
 		response.setResponseNoContent();
 	}

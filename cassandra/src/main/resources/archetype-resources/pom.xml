@@ -23,12 +23,7 @@
 		<dependency>
 			<groupId>com.strategicgains</groupId>
 			<artifactId>RestExpress</artifactId>
-			<version>0.10.2</version>
-		</dependency>
-		<dependency>
-			<groupId>com.strategicgains</groupId>
-			<artifactId>HyperExpress-HAL</artifactId>
-			<version>1.0.4</version>
+			<version>0.10.3</version>
 		</dependency>
 		<dependency>
 			<groupId>com.strategicgains</groupId>
@@ -38,7 +33,7 @@
 		<dependency>
 			<groupId>com.strategicgains.repoexpress</groupId>
 			<artifactId>repoexpress-cassandra</artifactId>
-			<version>0.4.1</version>
+			<version>0.4.2</version>
 		</dependency>
 		<dependency>
 			<groupId>com.strategicgains.domain-eventing</groupId>
@@ -47,23 +42,28 @@
 		</dependency>
 		<dependency>
 			<groupId>com.strategicgains.plugin-express</groupId>
+			<artifactId>HyperExpressPlugin</artifactId>
+			<version>0.2.2</version>
+		</dependency>
+		<dependency>
+			<groupId>com.strategicgains.plugin-express</groupId>
 			<artifactId>CacheControlPlugin</artifactId>
-			<version>0.2.1</version>
+			<version>0.2.2</version>
 		</dependency>
 		<dependency>
 			<groupId>com.strategicgains.plugin-express</groupId>
 			<artifactId>MetricsPlugin</artifactId>
-			<version>0.2.1</version>
+			<version>0.2.2</version>
 		</dependency>
 		<dependency>
 			<groupId>com.strategicgains.plugin-express</groupId>
 			<artifactId>SwaggerPlugin</artifactId>
-			<version>0.2.1</version>
+			<version>0.2.2</version>
 		</dependency>
 		<dependency>
 			<groupId>com.strategicgains.plugin-express</groupId>
-			<artifactId>CorsPlugin</artifactId>
-			<version>0.2.1</version>
+			<artifactId>CORSPlugin</artifactId>
+			<version>0.2.2</version>
 		</dependency>
 		<dependency>
 			<groupId>com.codahale.metrics</groupId>

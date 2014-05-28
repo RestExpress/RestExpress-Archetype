@@ -1,7 +1,7 @@
 #set( $symbol_pound = '#' )
 #set( $symbol_dollar = '$' )
 #set( $symbol_escape = '\' )
-package org.restexpress.scaffold.minimal.controller;
+package ${package}.controller;
 
 import java.util.Collections;
 import java.util.List;

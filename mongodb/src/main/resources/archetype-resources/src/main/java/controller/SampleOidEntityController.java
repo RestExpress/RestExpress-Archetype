@@ -11,7 +11,6 @@ import org.restexpress.Response;
 import org.restexpress.common.query.QueryFilter;
 import org.restexpress.common.query.QueryOrder;
 import org.restexpress.common.query.QueryRange;
-import org.restexpress.exception.BadRequestException;
 import org.restexpress.query.QueryFilters;
 import org.restexpress.query.QueryOrders;
 import org.restexpress.query.QueryRanges;
@@ -19,7 +18,10 @@ import ${package}.Constants;
 import ${package}.domain.SampleOidEntity;
 import ${package}.service.SampleOidEntityService;
 
-import com.strategicgains.hyperexpress.UrlBuilder;
+import com.strategicgains.hyperexpress.HyperExpress;
+import com.strategicgains.hyperexpress.builder.TokenBinder;
+import com.strategicgains.hyperexpress.builder.TokenResolver;
+import com.strategicgains.hyperexpress.builder.UrlBuilder;
 import com.strategicgains.repoexpress.mongodb.Identifiers;
 
 /**
@@ -30,6 +32,7 @@ import com.strategicgains.repoexpress.mongodb.Identifiers;
  */
 public class SampleOidEntityController
 {
+	private static final UrlBuilder LOCATION_BUILDER = new UrlBuilder();
 	private SampleOidEntityService service;
 
 	public SampleOidEntityController(SampleOidEntityService sampleService)
@@ -48,11 +51,11 @@ public class SampleOidEntityController
 
 		// Include the Location header...
 		String locationPattern = request.getNamedUrl(HttpMethod.GET, Constants.Routes.SINGLE_OID_SAMPLE);
-		response.addLocationHeader(new UrlBuilder(locationPattern)
-			.param(Constants.Url.SAMPLE_ID, saved.getId().toString())
-			.build());
+		response.addLocationHeader(LOCATION_BUILDER.build(locationPattern, new TokenResolver()
+			.bind(Constants.Url.SAMPLE_ID, Identifiers.MONGOID.format(saved.getId()))));
 
-		// enrich the resource with links, etc. here...
+		// Bind the resource with link URL tokens, etc. here...
+		HyperExpress.bind(Constants.Url.SAMPLE_ID, Identifiers.MONGOID.format(saved.getId()));
 
 		// Return the newly-created resource...
 		return saved;
@@ -64,6 +67,7 @@ public class SampleOidEntityController
 		SampleOidEntity entity = service.read(Identifiers.MONGOID.parse(id));
 
 		// enrich the resource with links, etc. here...
+		HyperExpress.bind(Constants.Url.SAMPLE_ID, Identifiers.MONGOID.format(entity.getId()));
 
 		return entity;
 	}
@@ -77,7 +81,16 @@ public class SampleOidEntityController
 		long count = service.count(filter);
 		response.setCollectionResponse(range, entities.size(), count);
 
-		// enrich the results collection, with links, etc. here...
+		// Bind the resources in the collection with link URL tokens, etc. here...
+		HyperExpress.tokenBinder(new TokenBinder()
+		{
+			@Override
+			public void bind(Object object, TokenResolver resolver)
+			{
+				SampleOidEntity entity = (SampleOidEntity) object;
+				resolver.bind(Constants.Url.SAMPLE_ID, Identifiers.MONGOID.format(entity.getId()));
+			}
+		});
 
 		return entities;
 	}
@@ -86,12 +99,7 @@ public class SampleOidEntityController
 	{
 		String id = request.getHeader(Constants.Url.SAMPLE_ID, "No resource ID supplied");
 		SampleOidEntity entity = request.getBodyAs(SampleOidEntity.class, "Resource details not provided");
-
-		if (!id.equals(entity.getId().toString()))
-		{
-			throw new BadRequestException("ID in URL and ID in resource body must match");
-		}
-
+		entity.setId(Identifiers.MONGOID.parse(id));
 		service.update(entity);
 		response.setResponseNoContent();
 	}

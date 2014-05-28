@@ -1,7 +1,7 @@
 #set( $symbol_pound = '#' )
 #set( $symbol_dollar = '$' )
 #set( $symbol_escape = '\' )
-package org.restexpress.scaffold.minimal.serialization;
+package ${package}.serialization;
 
 import org.restexpress.response.ErrorResponseWrapper;
 import org.restexpress.response.ResponseWrapper;
@@ -23,4 +23,14 @@ extends AbstractSerializationProvider
 	    add(JSON_SERIALIZER, RESPONSE_WRAPPER, true);
 	    add(XML_SERIALIZER, RESPONSE_WRAPPER);
     }
+
+	public static SerializationProcessor json()
+	{
+		return JSON_SERIALIZER;
+	}
+
+	public static SerializationProcessor xml()
+	{
+		return XML_SERIALIZER;
+	}
 }

@@ -3,6 +3,8 @@
 #set( $symbol_escape = '\' )
 package ${package}.domain;
 
+import org.restexpress.plugin.hyperexpress.Linkable;
+
 import com.strategicgains.repoexpress.mongodb.AbstractMongodbEntity;
 
 /**
@@ -12,6 +14,7 @@ import com.strategicgains.repoexpress.mongodb.AbstractMongodbEntity;
  */
 public class SampleOidEntity
 extends AbstractMongodbEntity
+implements Linkable
 {
 	public SampleOidEntity()
 	{

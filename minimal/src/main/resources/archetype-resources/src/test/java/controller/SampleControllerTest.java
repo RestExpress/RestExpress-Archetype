@@ -1,7 +1,7 @@
 #set( $symbol_pound = '#' )
 #set( $symbol_dollar = '$' )
 #set( $symbol_escape = '\' )
-package org.restexpress.scaffold.minimal.controller;
+package ${package}.controller;
 
 import static org.junit.Assert.assertEquals;
 
@@ -17,7 +17,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.restexpress.RestExpress;
-import org.restexpress.scaffold.minimal.Main;
+import ${package}.Main;
 
 public class SampleControllerTest {
 

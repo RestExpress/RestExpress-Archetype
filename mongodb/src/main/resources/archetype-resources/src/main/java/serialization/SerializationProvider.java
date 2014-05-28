@@ -23,4 +23,14 @@ extends AbstractSerializationProvider
 	    add(JSON_SERIALIZER, RESPONSE_WRAPPER, true);
 	    add(XML_SERIALIZER, RESPONSE_WRAPPER);
     }
+
+	public static SerializationProcessor json()
+	{
+		return JSON_SERIALIZER;
+	}
+
+	public static SerializationProcessor xml()
+	{
+		return XML_SERIALIZER;
+	}
 }

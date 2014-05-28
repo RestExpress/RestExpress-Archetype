@@ -20,42 +20,7 @@
 		<dependency>
 			<groupId>com.strategicgains</groupId>
 			<artifactId>RestExpress</artifactId>
-			<version>0.10.2</version>
-		</dependency>
-		<dependency>
-			<groupId>com.strategicgains</groupId>
-			<artifactId>HyperExpress-HAL</artifactId>
-			<version>1.0.4</version>
-		</dependency>
-		<dependency>
-			<groupId>com.strategicgains</groupId>
-			<artifactId>Syntaxe</artifactId>
-			<version>0.4.7</version>
-		</dependency>
-		<dependency>
-			<groupId>com.strategicgains.plugin-express</groupId>
-			<artifactId>CacheControlPlugin</artifactId>
-			<version>0.2.1</version>
-		</dependency>
-		<dependency>
-			<groupId>com.strategicgains.plugin-express</groupId>
-			<artifactId>MetricsPlugin</artifactId>
-			<version>0.2.1</version>
-		</dependency>
-		<dependency>
-			<groupId>com.strategicgains.plugin-express</groupId>
-			<artifactId>SwaggerPlugin</artifactId>
-			<version>0.2.1</version>
-		</dependency>
-		<dependency>
-			<groupId>com.strategicgains.plugin-express</groupId>
-			<artifactId>CorsPlugin</artifactId>
-			<version>0.2.1</version>
-		</dependency>
-		<dependency>
-			<groupId>com.codahale.metrics</groupId>
-			<artifactId>metrics-graphite</artifactId>
-			<version>3.0.1</version>
+			<version>0.10.3</version>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>

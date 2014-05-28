@@ -1,11 +1,11 @@
 #set( $symbol_pound = '#' )
 #set( $symbol_dollar = '$' )
 #set( $symbol_escape = '\' )
-package org.restexpress.scaffold.minimal;
+package ${package};
 
 import org.jboss.netty.handler.codec.http.HttpMethod;
 import org.restexpress.RestExpress;
-import org.restexpress.scaffold.minimal.config.Configuration;
+import ${package}.config.Configuration;
 
 public abstract class Routes
 {
