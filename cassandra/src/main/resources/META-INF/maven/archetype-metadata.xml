@@ -22,36 +22,9 @@
       </includes>
     </fileSet>
     <fileSet filtered="true" encoding="UTF-8">
-      <directory>bin</directory>
-      <includes>
-        <include>**/*.project</include>
-        <include>**/*.xml</include>
-        <include>**/*.properties</include>
-      </includes>
-    </fileSet>
-    <fileSet filtered="true" encoding="UTF-8">
       <directory>config/dev</directory>
       <includes>
         <include>**/*.properties</include>
-      </includes>
-    </fileSet>
-    <fileSet filtered="true" encoding="UTF-8">
-      <directory>bin/config</directory>
-      <includes>
-        <include>**/*.properties</include>
-      </includes>
-    </fileSet>
-    <fileSet encoding="UTF-8">
-      <directory>bin/src</directory>
-      <includes>
-        <include>**/*.class</include>
-        <include>**/*.cql</include>
-      </includes>
-    </fileSet>
-    <fileSet encoding="UTF-8">
-      <directory>bin</directory>
-      <includes>
-        <include>**/*.md</include>
       </includes>
     </fileSet>
     <fileSet filtered="true" encoding="UTF-8">

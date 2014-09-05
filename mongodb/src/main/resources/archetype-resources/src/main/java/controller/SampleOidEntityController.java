@@ -49,13 +49,12 @@ public class SampleOidEntityController
 		// Construct the response for create...
 		response.setResponseCreated();
 
+		// Bind the resource with link URL tokens, etc. here...
+		TokenResolver resolver = HyperExpress.bind(Constants.Url.SAMPLE_ID, Identifiers.MONGOID.format(saved.getId()));
+
 		// Include the Location header...
 		String locationPattern = request.getNamedUrl(HttpMethod.GET, Constants.Routes.SINGLE_OID_SAMPLE);
-		response.addLocationHeader(LOCATION_BUILDER.build(locationPattern, new TokenResolver()
-			.bind(Constants.Url.SAMPLE_ID, Identifiers.MONGOID.format(saved.getId()))));
-
-		// Bind the resource with link URL tokens, etc. here...
-		HyperExpress.bind(Constants.Url.SAMPLE_ID, Identifiers.MONGOID.format(saved.getId()));
+		response.addLocationHeader(LOCATION_BUILDER.build(locationPattern, resolver));
 
 		// Return the newly-created resource...
 		return saved;
@@ -82,12 +81,11 @@ public class SampleOidEntityController
 		response.setCollectionResponse(range, entities.size(), count);
 
 		// Bind the resources in the collection with link URL tokens, etc. here...
-		HyperExpress.tokenBinder(new TokenBinder()
+		HyperExpress.tokenBinder(new TokenBinder<SampleOidEntity>()
 		{
 			@Override
-			public void bind(Object object, TokenResolver resolver)
+			public void bind(SampleOidEntity entity, TokenResolver resolver)
 			{
-				SampleOidEntity entity = (SampleOidEntity) object;
 				resolver.bind(Constants.Url.SAMPLE_ID, Identifiers.MONGOID.format(entity.getId()));
 			}
 		});

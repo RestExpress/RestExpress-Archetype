@@ -60,18 +60,15 @@ public class SampleCompoundIdentifierEntityController
 		// Construct the response for create...
 		response.setResponseCreated();
 
-		// Include the Location header...
-		String locationPattern = request.getNamedUrl(HttpMethod.GET, Constants.Routes.SINGLE_COMPOUND_SAMPLE);
-		response.addLocationHeader(LOCATION_BUILDER.build(locationPattern, new TokenResolver()
-			.bind(Constants.Url.KEY1, saved.getKey1())
-			.bind(Constants.Url.KEY2, saved.getKey2())
-			.bind(Constants.Url.KEY3, saved.getKey3())));
-
 		// Bind the resource with link URL tokens, etc. here...
-		HyperExpress
+		TokenResolver resolver = HyperExpress
 			.bind(Constants.Url.KEY1, saved.getKey1())
 			.bind(Constants.Url.KEY2, saved.getKey2())
 			.bind(Constants.Url.KEY3, saved.getKey3());
+
+		// Include the Location header...
+		String locationPattern = request.getNamedUrl(HttpMethod.GET, Constants.Routes.SINGLE_COMPOUND_SAMPLE);
+		response.addLocationHeader(LOCATION_BUILDER.build(locationPattern, resolver));
 
 		// Return the newly-created resource...
 		return saved;
@@ -103,12 +100,11 @@ public class SampleCompoundIdentifierEntityController
 		response.setCollectionResponse(range, entities.size(), count);
 
 		// Bind the resources in the collection with link URL tokens, etc. here...
-		HyperExpress.tokenBinder(new TokenBinder()
+		HyperExpress.tokenBinder(new TokenBinder<SampleCompoundIdentifierEntity>()
 		{
 			@Override
-			public void bind(Object object, TokenResolver resolver)
+			public void bind(SampleCompoundIdentifierEntity entity, TokenResolver resolver)
 			{
-				SampleCompoundIdentifierEntity entity = (SampleCompoundIdentifierEntity) object;
 				resolver
 					.bind(Constants.Url.KEY1, entity.getKey1())
 					.bind(Constants.Url.KEY2, entity.getKey2())
