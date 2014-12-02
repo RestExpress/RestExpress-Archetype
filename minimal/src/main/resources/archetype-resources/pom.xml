@@ -20,7 +20,7 @@
 		<dependency>
 			<groupId>com.strategicgains</groupId>
 			<artifactId>RestExpress</artifactId>
-			<version>0.10.4</version>
+			<version>0.10.5</version>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
