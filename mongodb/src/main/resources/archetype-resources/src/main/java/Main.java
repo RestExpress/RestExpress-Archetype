@@ -3,11 +3,11 @@
 #set( $symbol_escape = '\' )
 package ${package};
 
-import static org.jboss.netty.handler.codec.http.HttpHeaders.Names.ACCEPT;
-import static org.jboss.netty.handler.codec.http.HttpHeaders.Names.AUTHORIZATION;
-import static org.jboss.netty.handler.codec.http.HttpHeaders.Names.CONTENT_TYPE;
-import static org.jboss.netty.handler.codec.http.HttpHeaders.Names.LOCATION;
-import static org.jboss.netty.handler.codec.http.HttpHeaders.Names.REFERER;
+import static io.netty.handler.codec.http.HttpHeaders.Names.ACCEPT;
+import static io.netty.handler.codec.http.HttpHeaders.Names.AUTHORIZATION;
+import static io.netty.handler.codec.http.HttpHeaders.Names.CONTENT_TYPE;
+import static io.netty.handler.codec.http.HttpHeaders.Names.LOCATION;
+import static io.netty.handler.codec.http.HttpHeaders.Names.REFERER;
 import static org.restexpress.Flags.Auth.PUBLIC_ROUTE;
 
 import java.io.FileNotFoundException;

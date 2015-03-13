@@ -3,7 +3,7 @@
 #set( $symbol_escape = '\' )
 package ${package}.controller;
 
-import org.jboss.netty.handler.codec.http.HttpMethod;
+import io.netty.handler.codec.http.HttpMethod;
 import org.restexpress.Request;
 import org.restexpress.Response;
 import ${package}.Constants;

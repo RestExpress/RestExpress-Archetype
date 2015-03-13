@@ -3,7 +3,7 @@
 #set( $symbol_escape = '\' )
 package ${package}.postprocessor;
 
-import static org.jboss.netty.handler.codec.http.HttpHeaders.Names.LAST_MODIFIED;
+import static io.netty.handler.codec.http.HttpHeaders.Names.LAST_MODIFIED;
 
 import org.restexpress.Request;
 import org.restexpress.Response;
