@@ -3,7 +3,7 @@
 #set( $symbol_escape = '\' )
 package ${package}.serialization;
 
-import ${package}.domain.SampleUuidEntity;
+import ${package}.uuid.SampleUuidEntity;
 import org.restexpress.serialization.xml.XstreamXmlProcessor;
 
 public class XmlSerializationProcessor

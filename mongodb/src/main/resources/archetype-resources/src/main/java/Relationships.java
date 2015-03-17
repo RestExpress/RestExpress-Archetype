@@ -6,8 +6,8 @@ package ${package};
 import java.util.Map;
 
 import org.restexpress.RestExpress;
-import ${package}.domain.SampleOidEntity;
-import ${package}.domain.SampleUuidEntity;
+import ${package}.objectid.SampleOidEntity;
+import ${package}.uuid.SampleUuidEntity;
 
 import com.strategicgains.hyperexpress.HyperExpress;
 import com.strategicgains.hyperexpress.RelTypes;

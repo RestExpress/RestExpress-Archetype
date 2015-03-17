@@ -8,16 +8,12 @@ import java.io.IOException;
 
 import org.restexpress.RestExpress;
 import org.restexpress.pipeline.SimpleConsoleLogMessageObserver;
-import ${package}.config.Configuration;
 import ${package}.serialization.SerializationProvider;
 import org.restexpress.util.Environment;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class Main
 {
-	private static final String SERVICE_NAME = "TODO: Enter Service Name";
-	private static final Logger LOG = LoggerFactory.getLogger(SERVICE_NAME);
+	private static final String SERVICE_NAME = "TODO: Enter service name";
 
 	public static void main(String[] args) throws Exception
 	{

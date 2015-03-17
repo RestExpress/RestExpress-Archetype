@@ -9,7 +9,9 @@ __NOTE:__ This project is generated from [RestExpress-Scaffold](https://github.c
 
 Usage
 =====
-To create a new RestExpress project using one of these archetypes, use the Maven archetype plugin with the 'generate' goal.  To create a MongoDB-based project interactively:
+To create a new RestExpress project using one of these archetypes, use the Maven archetype plugin with the 'generate' goal.
+
+To create a MongoDB-based project interactively:
 ```
 mvn archetype:generate -DarchetypeGroupId=com.strategicgains.archetype -DarchetypeArtifactId=restexpress-mongodb -DarchetypeVersion=1.14
 ```

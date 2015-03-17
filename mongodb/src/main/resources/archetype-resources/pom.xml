@@ -77,18 +77,9 @@
 			<scope>test</scope>
 			<optional>true</optional>
 		</dependency>
-		<dependency>
-			<groupId>org.apache.httpcomponents</groupId>
-			<artifactId>httpclient</artifactId>
-			<version>4.2.5</version>
-			<type>jar</type>
-			<scope>test</scope>
-		</dependency>
 	</dependencies>
 
 	<build>
-		<defaultGoal>compile</defaultGoal>
-
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
