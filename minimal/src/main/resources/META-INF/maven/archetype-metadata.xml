@@ -10,15 +10,9 @@
       </includes>
     </fileSet>
     <fileSet filtered="true" encoding="UTF-8">
-      <directory>config/dev</directory>
+      <directory>src/main/resources</directory>
       <includes>
         <include>**/*.properties</include>
-      </includes>
-    </fileSet>
-    <fileSet filtered="true" encoding="UTF-8">
-      <directory></directory>
-      <includes>
-        <include>zip-with-dependencies.xml</include>
       </includes>
     </fileSet>
     <fileSet encoding="UTF-8">

@@ -3,10 +3,13 @@
 #set( $symbol_escape = '\' )
 package ${package};
 
-import static io.netty.handler.codec.http.HttpHeaders.Names.*;
+import static io.netty.handler.codec.http.HttpHeaders.Names.ACCEPT;
+import static io.netty.handler.codec.http.HttpHeaders.Names.AUTHORIZATION;
+import static io.netty.handler.codec.http.HttpHeaders.Names.CONTENT_TYPE;
+import static io.netty.handler.codec.http.HttpHeaders.Names.LOCATION;
+import static io.netty.handler.codec.http.HttpHeaders.Names.REFERER;
 import static org.restexpress.Flags.Auth.PUBLIC_ROUTE;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.util.concurrent.TimeUnit;
@@ -54,7 +57,7 @@ public class Main
 	{
 		RestExpress.setSerializationProvider(new SerializationProvider());
 
-		Configuration config = loadEnvironment(args);
+		Configuration config = Environment.load(args, Configuration.class);
 		RestExpress server = new RestExpress()
 				.setName(SERVICE_NAME)
 				.setBaseUrl(config.getBaseUrl())
@@ -130,16 +133,5 @@ public class Main
 	    	.mapException(DuplicateItemException.class, ConflictException.class)
 	    	.mapException(ValidationException.class, BadRequestException.class)
 	    	.mapException(InvalidObjectIdException.class, BadRequestException.class);
-    }
-
-	private static Configuration loadEnvironment(String[] args)
-    throws FileNotFoundException, IOException
-    {
-	    if (args.length > 0)
-		{
-			return Environment.from(args[0], Configuration.class);
-		}
-
-	    return Environment.fromDefault(Configuration.class);
     }
 }
