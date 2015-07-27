@@ -1,3 +1,3 @@
 #! /bin/bash
 #
-mvn archetype:generate -DarchetypeGroupId=com.strategicgains.archetype -DarchetypeArtifactId=restexpress-minimal -DarchetypeVersion=1.15
+mvn archetype:generate -DarchetypeGroupId=com.strategicgains.archetype -DarchetypeArtifactId=restexpress-minimal -DarchetypeVersion=1.16
