@@ -4,7 +4,7 @@
 
   <groupId>com.strategicgains.archetype</groupId>
   <artifactId>restexpress-cassandra</artifactId>
-  <version>1.17-SNAPSHOT</version>
+  <version>1.17</version>
   <packaging>maven-archetype</packaging>
 
   <name>restexpress-cassandra</name>
@@ -12,7 +12,7 @@
   <parent>
     <groupId>com.strategicgains.archetype</groupId>
     <artifactId>restexpress-archetype</artifactId>
-    <version>1.17-SNAPSHOT</version>
+    <version>1.17</version>
     <relativePath>..</relativePath>
   </parent>
 
