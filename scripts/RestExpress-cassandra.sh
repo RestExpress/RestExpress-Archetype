@@ -1,3 +1,3 @@
 #! /bin/bash
 #
-mvn archetype:generate -DarchetypeGroupId=com.strategicgains.archetype -DarchetypeArtifactId=restexpress-cassandra -DarchetypeVersion=1.16
+mvn archetype:generate -DarchetypeGroupId=com.strategicgains.archetype -DarchetypeArtifactId=restexpress-cassandra -DarchetypeVersion=1.17

@@ -13,17 +13,17 @@ To create a new RestExpress project using one of these archetypes, use the Maven
 
 To create a MongoDB-based project interactively:
 ```
-mvn archetype:generate -DarchetypeGroupId=com.strategicgains.archetype -DarchetypeArtifactId=restexpress-mongodb -DarchetypeVersion=1.16
+mvn archetype:generate -DarchetypeGroupId=com.strategicgains.archetype -DarchetypeArtifactId=restexpress-mongodb -DarchetypeVersion=1.17
 ```
 
 For a Cassandra skeleton, use the following:
 ```
-mvn archetype:generate -DarchetypeGroupId=com.strategicgains.archetype -DarchetypeArtifactId=restexpress-cassandra -DarchetypeVersion=1.16
+mvn archetype:generate -DarchetypeGroupId=com.strategicgains.archetype -DarchetypeArtifactId=restexpress-cassandra -DarchetypeVersion=1.17
 ```
 
 For a minimal skeleton with no backing database, use the following:
 ```
-mvn archetype:generate -DarchetypeGroupId=com.strategicgains.archetype -DarchetypeArtifactId=restexpress-minimal -DarchetypeVersion=1.16
+mvn archetype:generate -DarchetypeGroupId=com.strategicgains.archetype -DarchetypeArtifactId=restexpress-minimal -DarchetypeVersion=1.17
 ```
 
 Scripts
