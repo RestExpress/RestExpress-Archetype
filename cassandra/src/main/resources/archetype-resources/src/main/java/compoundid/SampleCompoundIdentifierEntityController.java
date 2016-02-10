@@ -3,8 +3,6 @@
 #set( $symbol_escape = '\' )
 package ${package}.compoundid;
 
-import io.netty.handler.codec.http.HttpMethod;
-
 import java.util.List;
 
 import org.restexpress.Request;
@@ -14,12 +12,12 @@ import org.restexpress.exception.BadRequestException;
 import org.restexpress.query.QueryRanges;
 import ${package}.Constants;
 
-import com.strategicgains.hyperexpress.HyperExpress;
+import com.strategicgains.hyperexpress.builder.DefaultTokenResolver;
 import com.strategicgains.hyperexpress.builder.DefaultUrlBuilder;
-import com.strategicgains.hyperexpress.builder.TokenBinder;
-import com.strategicgains.hyperexpress.builder.TokenResolver;
 import com.strategicgains.hyperexpress.builder.UrlBuilder;
 import com.strategicgains.repoexpress.domain.Identifier;
+
+import io.netty.handler.codec.http.HttpMethod;
 
 /**
  * This is the 'controller' layer, where HTTP details are converted to domain concepts and passed to the service layer.
@@ -60,15 +58,9 @@ public class SampleCompoundIdentifierEntityController
 		// Construct the response for create...
 		response.setResponseCreated();
 
-		// Bind the resource with link URL tokens, etc. here...
-		TokenResolver resolver = HyperExpress
-			.bind(Constants.Url.KEY1, saved.getKey1())
-			.bind(Constants.Url.KEY2, saved.getKey2())
-			.bind(Constants.Url.KEY3, saved.getKey3());
-
 		// Include the Location header...
 		String locationPattern = request.getNamedUrl(HttpMethod.GET, Constants.Routes.SINGLE_COMPOUND_SAMPLE);
-		response.addLocationHeader(LOCATION_BUILDER.build(locationPattern, resolver));
+		response.addLocationHeader(LOCATION_BUILDER.build(locationPattern, new DefaultTokenResolver()));
 
 		// Return the newly-created resource...
 		return saved;
@@ -80,13 +72,6 @@ public class SampleCompoundIdentifierEntityController
 		String key2 = request.getHeader(Constants.Url.KEY2, "Key2 not provided");
 		String key3 = request.getHeader(Constants.Url.KEY3, "Key3 not provided");
 		SampleCompoundIdentifierEntity entity = service.read(new Identifier(key1, key2, key3));
-
-		// Bind the resource with link URL tokens, etc. here...
-		HyperExpress
-			.bind(Constants.Url.KEY1, entity.getKey1())
-			.bind(Constants.Url.KEY2, entity.getKey2())
-			.bind(Constants.Url.KEY3, entity.getKey3());
-
 		return entity;
 	}
 
@@ -98,20 +83,6 @@ public class SampleCompoundIdentifierEntityController
 		List<SampleCompoundIdentifierEntity> entities = service.readAll(key1, key2);
 		long count = service.count(key1, key2);
 		response.setCollectionResponse(range, entities.size(), count);
-
-		// Bind the resources in the collection with link URL tokens, etc. here...
-		HyperExpress.tokenBinder(new TokenBinder<SampleCompoundIdentifierEntity>()
-		{
-			@Override
-			public void bind(SampleCompoundIdentifierEntity entity, TokenResolver resolver)
-			{
-				resolver
-					.bind(Constants.Url.KEY1, entity.getKey1())
-					.bind(Constants.Url.KEY2, entity.getKey2())
-					.bind(Constants.Url.KEY3, entity.getKey3());
-			}
-		});
-
 		return entities;
 	}
 

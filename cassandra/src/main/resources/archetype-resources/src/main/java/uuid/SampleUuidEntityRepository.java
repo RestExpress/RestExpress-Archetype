@@ -68,8 +68,8 @@ extends CassandraUuidTimestampedEntityRepository<SampleUuidEntity>
 
 		SampleUuidEntity s = new SampleUuidEntity();
 		s.setUuid(row.getUUID(getIdentifierColumn()));
-		s.setCreatedAt(row.getDate("createdat"));
-		s.setUpdatedAt(row.getDate("updatedat"));
+		s.setCreatedAt(row.getTimestamp("createdat"));
+		s.setUpdatedAt(row.getTimestamp("updatedat"));
 		return s;
     }
 }

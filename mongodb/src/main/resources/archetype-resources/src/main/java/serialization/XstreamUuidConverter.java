@@ -31,6 +31,6 @@ implements SingleValueConverter
 	@Override
 	public String toString(Object objectId)
 	{
-		return ((UUID) objectId).toString();
+		return UuidConverter.format((UUID) objectId);
 	}
 }

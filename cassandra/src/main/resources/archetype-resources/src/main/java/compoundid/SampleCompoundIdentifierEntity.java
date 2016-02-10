@@ -4,7 +4,9 @@
 package ${package}.compoundid;
 
 import org.restexpress.plugin.hyperexpress.Linkable;
+import ${package}.Constants;
 
+import com.strategicgains.hyperexpress.annotation.BindToken;
 import com.strategicgains.repoexpress.domain.AbstractTimestampedIdentifiable;
 import com.strategicgains.repoexpress.domain.Identifier;
 import com.strategicgains.syntaxe.annotation.Required;
@@ -14,12 +16,15 @@ extends AbstractTimestampedIdentifiable
 implements Linkable
 {
 	@Required
+	@BindToken(Constants.Url.KEY1)
 	private String key1;
 
 	@Required
+	@BindToken(Constants.Url.KEY2)
 	private String key2;
 
 	@Required
+	@BindToken(Constants.Url.KEY3)
 	private String key3;
 
 	public SampleCompoundIdentifierEntity()

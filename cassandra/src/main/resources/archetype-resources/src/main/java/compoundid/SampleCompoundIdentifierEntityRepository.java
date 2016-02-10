@@ -134,8 +134,8 @@ extends AbstractCassandraRepository<SampleCompoundIdentifierEntity>
 		s.setKey1(row.getString("key1"));
 		s.setKey2(row.getString("key2"));
 		s.setKey3(row.getString("key3"));
-		s.setCreatedAt(row.getDate("createdat"));
-		s.setUpdatedAt(row.getDate("updatedat"));
+		s.setCreatedAt(row.getTimestamp("createdat"));
+		s.setUpdatedAt(row.getTimestamp("updatedat"));
 		return s;
 	}
 

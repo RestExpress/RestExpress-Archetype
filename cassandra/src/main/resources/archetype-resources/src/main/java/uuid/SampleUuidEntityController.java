@@ -3,18 +3,17 @@
 #set( $symbol_escape = '\' )
 package ${package}.uuid;
 
-import io.netty.handler.codec.http.HttpMethod;
-
 import org.restexpress.Request;
 import org.restexpress.Response;
 import ${package}.Constants;
 
-import com.strategicgains.hyperexpress.HyperExpress;
+import com.strategicgains.hyperexpress.builder.DefaultTokenResolver;
 import com.strategicgains.hyperexpress.builder.DefaultUrlBuilder;
-import com.strategicgains.hyperexpress.builder.TokenResolver;
 import com.strategicgains.hyperexpress.builder.UrlBuilder;
 import com.strategicgains.repoexpress.adapter.Identifiers;
 import com.strategicgains.repoexpress.util.UuidConverter;
+
+import io.netty.handler.codec.http.HttpMethod;
 
 /**
  * This is the 'controller' layer, where HTTP details are converted to domain concepts and passed to the service layer.
@@ -42,12 +41,9 @@ public class SampleUuidEntityController
 		// Construct the response for create...
 		response.setResponseCreated();
 
-		// Bind the resource with link URL tokens, etc. here...
-		TokenResolver resolver = HyperExpress.bind(Constants.Url.UUID, Identifiers.UUID.format(saved.getUuid()));
-
 		// Include the Location header...
 		String locationPattern = request.getNamedUrl(HttpMethod.GET, Constants.Routes.SINGLE_UUID_SAMPLE);
-		response.addLocationHeader(LOCATION_BUILDER.build(locationPattern, resolver));
+		response.addLocationHeader(LOCATION_BUILDER.build(locationPattern, new DefaultTokenResolver()));
 
 		// Return the newly-created resource...
 		return saved;
@@ -56,12 +52,7 @@ public class SampleUuidEntityController
 	public SampleUuidEntity read(Request request, Response response)
 	{
 		String id = request.getHeader(Constants.Url.UUID, "No resource ID supplied");
-		SampleUuidEntity entity = service.read(Identifiers.UUID.parse(id));
-
-		// Bind the resource with link URL tokens, etc. here...
-		HyperExpress.bind(Constants.Url.UUID, Identifiers.UUID.format(entity.getUuid()));
-
-		return entity;
+		return service.read(Identifiers.UUID.parse(id));
 	}
 
 	public void update(Request request, Response response)
