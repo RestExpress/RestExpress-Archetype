@@ -4,3 +4,4 @@ target/
 .classpath/
 *.iml
 atlassian-ide-plugin.xml
+.project
